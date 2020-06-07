@@ -1,46 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
+const helpers = require('../helpers/users');
 
-router.get('/', (req, res) => {
-    db.User.find().then((user) => {
-        res.json(user)
-    }).catch((e) => {
-        console.log(e);
-    })
-});
+router.route('/')
+    .get(helpers.getUsers)
+    .post(helpers.createUser);
 
-router.post('/', (req, res) => {
-    console.log(req.body);
-    db.User.create(req.body).then((newUser) => {
-        res.json(newUser);
-    }).catch((err) => {
-        res.send(err)
-    })   
-});
-
-router.get('/:userId', (req, res) => {
-    db.User.findById(req.params.userId).then((foundUser) => {
-        res.json(foundUser);
-    }).catch((err) => {
-        res.send(err)
-    })
-});
-
-router.put('/:userId', (req, res) => {
-    db.User.findOneAndUpdate({_id: req.params.userId}, req.body, {new: true})
-    .then((user) => {
-        res.json(user)
-    }).catch((err) => {
-        res.send(err)
-    })
-});
-
-router.delete('/:userId', (req, res) => {
-    db.User.remove({_id: req.params.userId})
-    .then(() => {
-        res.json({message: 'We deleted it!'})
-    })
-})
+router.route('/:userId')
+    .get(helpers.showUser)
+    .put(helpers.updateUser)
+    .delete(helpers.deleteUser);
 
 module.exports = router;

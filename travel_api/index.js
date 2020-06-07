@@ -5,13 +5,15 @@ const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/views'));
 
 const userRoutes = require('./routes/users');
 
 app.use('/api/users', userRoutes);
 
 app.get("/", (req, res) => {
-    res.json({message: "Hello from the root route"})
+    res.sendFile('index.html')
 })
 
 app.listen(port, () => {
