@@ -17,6 +17,14 @@ router.post('/', (req, res) => {
     }).catch((err) => {
         res.send(err)
     })   
-})
+});
+
+router.get('/:userId', (req, res) => {
+    db.User.findById(req.params.userId).then((foundUser) => {
+        res.json(foundUser);
+    }).catch((err) => {
+        res.send(err)
+    })
+});
 
 module.exports = router;
