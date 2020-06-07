@@ -27,4 +27,13 @@ router.get('/:userId', (req, res) => {
     })
 });
 
+router.put('/:userId', (req, res) => {
+    db.User.findOneAndUpdate({_id: req.params.userId}, req.body, {new: true})
+    .then((user) => {
+        res.json(user)
+    }).catch((err) => {
+        res.send(err)
+    })
+})
+
 module.exports = router;
