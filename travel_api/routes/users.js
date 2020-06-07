@@ -34,6 +34,13 @@ router.put('/:userId', (req, res) => {
     }).catch((err) => {
         res.send(err)
     })
+});
+
+router.delete('/:userId', (req, res) => {
+    db.User.remove({_id: req.params.userId})
+    .then(() => {
+        res.json({message: 'We deleted it!'})
+    })
 })
 
 module.exports = router;
