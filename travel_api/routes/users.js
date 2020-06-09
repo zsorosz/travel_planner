@@ -8,7 +8,7 @@ const User = require("../models/user");
 
 // PASSPORT CONFIG
 router.use(require("express-session")({
-    secret: "Unstoppable Ninja Cseppke!",
+    secret: "Top Secret",
     resave: false,
     saveUninitialized: false
   }));
@@ -25,7 +25,9 @@ router.use(function(req, res, next){
     next();
 });
 
-router.post('/', function(req, res){
+//Signup route
+
+router.post('/signup', function(req, res){
     let newUser = new User({username: req.body.username, email: req.body.email});
     db.User.register(newUser, req.body.password, function(err, user){
         if(err){
@@ -34,14 +36,23 @@ router.post('/', function(req, res){
         }
         passport.authenticate("local")(req, res, function(){
             //req.flash("success", "Welcome to TeamsApp " + user.username);
-            res.send('Success');
+            res.redirect('/api/' + newUser.username);
         });
     });
 });
 
+//Login route
+
+router.post("/login", passport.authenticate("local", 
+{
+    successRedirect: "/api/profil",
+    failureRedirect: "/"
+}), function(req, res){
+});
+
 router.route('/')
     .get(helpers.getUsers)
-    // .post(helpers.createUser);
+    // .post(helpers.createUser#);
 
 router.route('/:userId')
     .get(helpers.showUser)
