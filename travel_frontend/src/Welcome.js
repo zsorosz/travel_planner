@@ -6,11 +6,10 @@ class Welcome extends Component {
         return(
             <div>
                 <h1>Welcome to the Travel Planner</h1>
-                <Link to="/api/users/signup">Sign Up</Link>
-                <Link to="/api/users/login">Log In</Link>
+                <Link to="/register">Sign Up</Link>
+                <Link to="/login">Log In</Link>
             </div>
         )
     }
-}
-
+};
 export default Welcome;

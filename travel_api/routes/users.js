@@ -2,61 +2,115 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models');
 const helpers = require('../helpers/users');
-const passport = require("passport");
-const LocalStrategy   = require("passport-local");
+const cors = require('cors')
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
 const User = require("../models/user");
 
-// PASSPORT CONFIG
-router.use(require("express-session")({
-    secret: "Top Secret",
-    resave: false,
-    saveUninitialized: false
-  }));
-router.use(passport.initialize());
-router.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-  
-router.use(function(req, res, next){
-    res.locals.currentUser = req.user;
-    // res.locals.error = req.flash("error");
-    // res.locals.success = req.flash("success");
-    next();
-});
+router.use(cors());
+
+process.env.SECRET_KEY = 'secret';
+
+//////////////////////////
+// AUTH ROUTES
+/////////////////////////
 
 //Signup route
 
-router.post('/signup', function(req, res){
-    let newUser = new User({username: req.body.username, email: req.body.email});
-    db.User.register(newUser, req.body.password, function(err, user){
-        if(err){
-            //req.flash("error", err.message);
-            console.log(err);
-        }
-        passport.authenticate("local")(req, res, function(){
-            //req.flash("success", "Welcome to TeamsApp " + user.username);
-            res.redirect('/api/' + newUser.username);
-        });
-    });
+router.post('/register', (req, res) => {
+    const userData = {
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password
+    }
+    User.findOne({
+        email: req.body.email
+      })
+        .then(user => {
+          if (!user) {
+            bcrypt.hash(req.body.password, 10, (err, hash) => {
+              userData.password = hash
+              User.create(userData)
+                .then(user => {
+                  res.json({ status: user.email + 'Registered!' })
+                })
+                .catch(err => {
+                  res.send('error: ' + err)
+                })
+            })
+          } else {
+            res.json({ error: 'User already exists' })
+          }
+        })
+        .catch(err => {
+          res.send('error: ' + err)
+        })
 });
 
 //Login route
 
-router.post("/login", passport.authenticate("local", 
-{
-    successRedirect: "/api/profil",
-    failureRedirect: "/"
-}), function(req, res){
-});
+router.post('/login', (req, res) => {
+    User.findOne({
+      email: req.body.email
+    })
+      .then(user => {
+        if (user) {
+          if (bcrypt.compareSync(req.body.password, user.password)) {
+            // Passwords match
+            const payload = {
+              _id: user._id,
+              username: user.username,
+              email: user.email
+            }
+            let token = jwt.sign(payload, process.env.SECRET_KEY, {
+              expiresIn: 1440
+            })
+            res.send(token)
+          } else {
+            // Passwords don't match
+            res.json({ error: 'User does not exist' })
+          }
+        } else {
+          res.json({ error: 'User does not exist' })
+        }
+      })
+      .catch(err => {
+        res.send('error: ' + err)
+      })
+  })
 
-router.route('/')
-    .get(helpers.getUsers)
-    // .post(helpers.createUser#);
+  //Show User
+  
+  router.get('/profil', (req, res) => {
+    var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+  
+    User.findOne({
+      _id: decoded._id
+    })
+      .then(user => {
+        if (user) {
+          res.json(user)
+        } else {
+          res.send('User does not exist')
+        }
+      })
+      .catch(err => {
+        res.send('error: ' + err)
+      })
+  })
 
-router.route('/:userId')
-    .get(helpers.showUser)
-    .put(helpers.updateUser)
-    .delete(helpers.deleteUser);
+//////////////////////////////////////////////////////
+// USER ROUTES
+/////////////////////////////////////////////////////
+
+
+// router.route('/')
+//     .get(helpers.getUsers)
+//     // .post(helpers.createUser#);
+
+// router.route('/:userId')
+//     .get(helpers.showUser)
+//     .put(helpers.updateUser)
+//     .delete(helpers.deleteUser);
 
 module.exports = router;
