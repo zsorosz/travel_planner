@@ -1,44 +1,51 @@
 import React, { Component } from 'react';
-const APIURL = '/api/users/signup/profil';
+import jwt_decode from 'jwt-decode';
+import { getProfile } from './UserFunctions';
 
 class Profil extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            user: {}
-        }
+  constructor() {
+    super()
+    this.state = {
+      username: '',
+      email: '',
+      id: '',
+      errors: {}
     }
+  }
 
-    componentDidMount(){
-        this.loadUser();
-        console.log(this.state.user)
-    }
+  componentDidMount() {
+    const token = localStorage.usertoken
+    const decoded = jwt_decode(token)
+    this.setState({
+      username: decoded.username,
+      email: decoded.email,
+      id: decoded._id
+    });
+  }
 
-    loadUser(){
-        fetch(APIURL)
-        .then(resp => {
-            if(!resp.ok){
-                if(resp.status >= 400 && resp.status < 500) {
-                    return resp.json().then(data => {
-                        let err = {errorMessage: data.message};
-                        throw err;
-                    })
-                } else {
-                    let err = {errorMessage: 'Please try again later'};
-                    throw err;
-                }
-            }
-            return resp.json();
-        }) .then(user => this.setState({user}));
-    }
-
-    render(){
-        return(
-            <div>
-                <h1>Welcome to your Profil</h1>
-            </div>
-        )
-    }
+  render() {
+    return (
+        <div>
+            <h1>PROFILE</h1>
+            <table>
+                <tbody>
+                <tr>
+                    <td>Username</td>
+                    <td>{this.state.username}</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>{this.state.email}</td>
+                </tr>
+                <tr>
+                    <td>UserID</td>
+                    <td>{this.state.id}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    )
+  }
 }
 
 export default Profil;

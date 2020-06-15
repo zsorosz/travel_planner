@@ -29,7 +29,7 @@ class SignUp extends Component {
         }
     
         register(newUser).then(res => {
-            console.log('Success');
+            console.log('Success', res);
             history.push("/profil")
         })
     };

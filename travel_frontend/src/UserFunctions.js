@@ -29,8 +29,8 @@ export const login = user => {
 
 export const getProfile = user => {
   return axios
-    .get('/api/users/profile', {
-      //headers: { Authorization: ` ${this.getToken()}` }
+    .get('/api/users/profil', {
+      // headers: { Authorization: ` ${this.getToken()}` }
     })
     .then(response => {
       console.log(response)
