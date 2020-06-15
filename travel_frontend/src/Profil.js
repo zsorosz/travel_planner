@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import jwt_decode from 'jwt-decode';
-import { getProfile } from './UserFunctions';
+import history from './history';
+// import { getProfile } from './UserFunctions';
 
 class Profil extends Component {
   constructor() {
@@ -23,10 +24,15 @@ class Profil extends Component {
     });
   }
 
+handleLogout(){
+    history.push("/");
+    window.localStorage.clear()
+}
+
   render() {
     return (
         <div>
-            <h1>PROFILE</h1>
+            <h1>Hi, {this.state.username}!</h1>
             <table>
                 <tbody>
                 <tr>
@@ -43,6 +49,7 @@ class Profil extends Component {
                 </tr>
                 </tbody>
             </table>
+            <button onClick={this.handleLogout}>Log out</button>
         </div>
     )
   }
