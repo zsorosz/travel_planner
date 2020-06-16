@@ -7,6 +7,7 @@ import LogIn from './LogIn';
 import Welcome from './Welcome';
 import Profil from './Profil';
 import history from './history';
+import './styles/Page.css';
 
 class App extends Component {
   render(){

@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import history from './history';
 import { login } from './UserFunctions'
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import './styles/LoginStyles.css';
 
 class LogIn extends Component {
     constructor(props){
@@ -31,35 +36,48 @@ class LogIn extends Component {
         })
     }
     render(){
-        return( 
+        return(
+          <Container class='login-container'>
+            <Typography component="h1" variant="h5">
+              Sign in
+            </Typography>
             <form noValidate onSubmit={this.onSubmit}>
-              <h1>Please sign in</h1>
-              <div>
-                <label htmlFor="email">Email address</label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Enter email"
-                  value={this.state.email}
-                  onChange={this.onChange}
-                />
-              </div>
-              <div>
-                <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  value={this.state.password}
-                  onChange={this.onChange}
-                />
-              </div>
-              <button
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                autoFocus
+                value={this.state.email}
+                onChange={this.onChange}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                value={this.state.password}
+                onChange={this.onChange}
+              />
+              <Button
                 type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
               >
-                Sign in
-              </button>
+                Sign In
+              </Button>
             </form>
+          </Container>
         )
     }
 }
