@@ -1,11 +1,11 @@
-.login-container {
+.form-container {
     margin-top: 8rem;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.login-avatar {
-    margin: 1rem;
-    background-color: rebeccapurple;
-}
+/* .form-fields {
+    margin-bottom: 2rem;
+    width: 100%
+} */

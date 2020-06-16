@@ -5,7 +5,9 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import './styles/LoginStyles.css';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import './styles/FormStyles.css';
 
 class LogIn extends Component {
     constructor(props){
@@ -37,7 +39,7 @@ class LogIn extends Component {
     }
     render(){
         return(
-          <Container class='login-container'>
+          <Container class='form-container'>
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
@@ -76,6 +78,13 @@ class LogIn extends Component {
               >
                 Sign In
               </Button>
+              <Grid container justify="flex-end">
+                <Grid item>
+                  <Link href="/register" variant="body2">
+                    You don't have an account yet? Sign up here
+                  </Link>
+                </Grid>
+              </Grid>
             </form>
           </Container>
         )

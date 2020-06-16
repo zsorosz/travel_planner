@@ -32,7 +32,7 @@ router.post('/register', (req, res) => {
               userData.password = hash
               User.create(userData)
                 .then(user => {
-                  res.json({ status: user.email + 'Registered!' })
+                  res.json(user)
                 })
                 .catch(err => {
                   res.send('error: ' + err)
