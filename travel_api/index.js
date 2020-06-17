@@ -17,8 +17,10 @@ app.use(function(req, res, next) {
 });
 
 const userRoutes = require('./routes/users');
+const plansRoutes = require('./routes/plans');
 
 app.use('/api/users', userRoutes);
+app.use("/api/users/:id/plans", plansRoutes);
 
 app.get("/", (req, res) => {
     res.sendFile('index.html')

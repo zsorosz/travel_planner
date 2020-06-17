@@ -99,18 +99,18 @@ router.post('/login', (req, res) => {
       })
   })
 
-//////////////////////////////////////////////////////
-// USER ROUTES
-/////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+//USER ROUTES
+///////////////////////////////////////////////////
 
 
-// router.route('/')
-//     .get(helpers.getUsers)
-//     // .post(helpers.createUser#);
+router.route('/')
+    .get(helpers.getUsers)
+    // .post(helpers.createUser#);
 
-// router.route('/:userId')
-//     .get(helpers.showUser)
-//     .put(helpers.updateUser)
-//     .delete(helpers.deleteUser);
+router.route('/:userId')
+    .get(helpers.showUser)
+    .put(helpers.updateUser)
+    .delete(helpers.deleteUser);
 
 module.exports = router;
