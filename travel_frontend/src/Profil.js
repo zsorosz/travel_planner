@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import jwt_decode from 'jwt-decode';
 import history from './history';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+
 // import { getProfile } from './UserFunctions';
 
 class Profil extends Component {
@@ -31,8 +35,9 @@ handleLogout(){
 
   render() {
     return (
-        <div>
-            <h1>Hi, {this.state.username}!</h1>
+        <Container component="main" maxWidth="xs">
+            <Typography component="h1" variant="h4">Hi, {this.state.username}!
+            </Typography>
             <table>
                 <tbody>
                 <tr>
@@ -49,8 +54,14 @@ handleLogout(){
                 </tr>
                 </tbody>
             </table>
-            <button onClick={this.handleLogout}>Log out</button>
-        </div>
+            <Button 
+                fullWidth
+                variant="contained"
+                color="secondary"
+                onClick={this.handleLogout}>
+                    Log out
+            </Button>
+        </Container>
     )
   }
 }
