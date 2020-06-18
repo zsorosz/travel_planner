@@ -12,16 +12,16 @@ export const createNewPlan = (newPlan, id) => {
       })
 }
 
-// export const getProfile = user => {
-//   return axios
-//     .get('/api/users/profil', {
-//       // headers: { Authorization: ` ${this.getToken()}` }
-//     })
-//     .then(response => {
-//       console.log(response)
-//       return response.data
-//     })
-//     .catch(err => {
-//       console.log(err)
-//     })
-// }
+export const getAllPlans = userId => {
+  return axios
+    .get(`/api/users/${userId}/plans`, {
+      // headers: { Authorization: ` ${this.getToken()}` }
+    })
+    .then(response => {
+      console.log('axios response', response)
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}

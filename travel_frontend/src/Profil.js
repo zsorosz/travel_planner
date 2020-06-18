@@ -5,9 +5,7 @@ import { Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import NewPlan from './NewPlan';
-
-// import { getProfile } from './UserFunctions';
+import { getAllPlans } from './PlanFunctions';
 
 class Profil extends Component {
   constructor(props) {
@@ -16,19 +14,34 @@ class Profil extends Component {
       username: '',
       email: '',
       id: '',
-      errors: {}
+      plans: [],
+      errors: {},
+      test: 'test'
     }
+    this.showPlans = this.showPlans.bind(this);
   }
 
-  componentDidMount() {
+componentDidMount() {
     const token = localStorage.usertoken
     const decoded = jwt_decode(token)
+    
     this.setState({
       username: decoded.username,
       email: decoded.email,
       id: decoded._id
-    });
-  }
+    //   plans: decoded.plans
+    }); 
+    this.showPlans(decoded._id);
+};
+//TODO: 
+showPlans(id){
+    getAllPlans(id).then(plans => {
+        this.setState({plans: plans})
+    })
+    .catch(err => {
+    console.log(err)
+    })
+}
 
 handleLogout(){
     history.push("/");
@@ -56,6 +69,12 @@ render() {
                 </tr>
                 </tbody>
             </table>
+            {/* <div>{this.state.plans}</div> */}
+            <ul>
+                {this.state.plans.map(plan => (
+                    <li>{plan._id}</li>
+                ))}
+            </ul>
             <Button 
                 fullWidth
                 variant="contained"
