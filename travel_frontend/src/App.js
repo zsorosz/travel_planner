@@ -6,6 +6,7 @@ import SignUp from './SignUp';
 import LogIn from './LogIn';
 import Welcome from './Welcome';
 import Profil from './Profil';
+import NewPlan from './NewPlan';
 import history from './history';
 import './styles/Page.css';
 
@@ -39,9 +40,18 @@ class App extends Component {
                 <Route 
                   exact 
                   path="/profil" 
-                  render={(routeProps) => (
+                  render={(props) => (
                     <div className="page">
-                      <Profil />
+                      <Profil {...props} />
+                    </div>
+                  )} 
+                />
+                <Route 
+                  exact 
+                  path="/newPlan" 
+                  render={(props) => (
+                    <div className="page">
+                      <NewPlan {...props}/>
                     </div>
                   )} 
                 />

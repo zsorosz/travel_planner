@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import jwt_decode from 'jwt-decode';
 import history from './history';
+import { Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import NewPlan from './NewPlan';
 
 // import { getProfile } from './UserFunctions';
 
 class Profil extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       username: '',
       email: '',
@@ -33,7 +35,7 @@ handleLogout(){
     window.localStorage.clear()
 }
 
-  render() {
+render() {
     return (
         <Container component="main" maxWidth="xs">
             <Typography component="h1" variant="h4">Hi, {this.state.username}!
@@ -61,6 +63,7 @@ handleLogout(){
                 onClick={this.handleLogout}>
                     Log out
             </Button>
+            <Link to={{ pathname: '/newPlan', userId: this.state.id}}>Create a new Plan</Link>
         </Container>
     )
   }
