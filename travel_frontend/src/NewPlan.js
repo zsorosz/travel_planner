@@ -11,6 +11,7 @@ class NewPlan extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            title: '',
             departureCity: '',
             arrivalCity: '',
             travelMethod: '',
@@ -32,9 +33,10 @@ class NewPlan extends Component {
         e.preventDefault();
     
         const newPlan = {
-          departureCity: this.state.departureCity,
-          arrivalCity: this.state.arrivalCity,
-          travelMethod: this.state.travelMethod
+            title: this.state.title,
+            departureCity: this.state.departureCity,
+            arrivalCity: this.state.arrivalCity,
+            travelMethod: this.state.travelMethod
         }
 
         createNewPlan(newPlan, this.props.location.userId).then(res => {
@@ -49,6 +51,18 @@ class NewPlan extends Component {
                     Create a New Plan
                 </Typography>
                 <form noValidate onSubmit={this.onSubmit}>
+                    <TextField
+                        margin="normal"
+                        name="title"
+                        variant="outlined"
+                        required
+                        fullWidth
+                        id="title"
+                        label="Give a name to your plan"
+                        autoFocus
+                        value={this.state.title}
+                        onChange={this.onChange}
+                    />
                     <TextField
                         margin="normal"
                         name="departureCity"

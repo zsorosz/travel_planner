@@ -3,6 +3,7 @@ import axios from 'axios'
 export const createNewPlan = (newPlan, id) => {
     return axios
       .post(`/api/users/${id}/plans/new`, {
+        title: newPlan.title,
         departureCity: newPlan.departureCity,
         arrivalCity: newPlan.arrivalCity,
         travelMethod: newPlan.travelMethod

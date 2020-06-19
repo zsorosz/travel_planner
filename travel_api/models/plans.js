@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const plansSchema = new mongoose.Schema({
+    title: String,
     startDate: Number,
     endDate: Number,
     route: [

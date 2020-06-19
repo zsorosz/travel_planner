@@ -7,6 +7,7 @@ import LogIn from './LogIn';
 import Welcome from './Welcome';
 import Profil from './Profil';
 import NewPlan from './NewPlan';
+import Plan from './Plan';
 import history from './history';
 import './styles/Page.css';
 
@@ -52,6 +53,15 @@ class App extends Component {
                   render={(props) => (
                     <div className="page">
                       <NewPlan {...props}/>
+                    </div>
+                  )} 
+                />
+                <Route 
+                  exact 
+                  path="/plans/:planId" 
+                  render={(routeProps) => (
+                    <div className="page">
+                      <Plan planId={routeProps.match.params.planId}/>
                     </div>
                   )} 
                 />

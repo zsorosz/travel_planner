@@ -31,6 +31,7 @@ router.post("/new", function(req, res){
             res.redirect("back");
         } else{
             const newPlan = {
+                title: req.body.title,
                 startDate: req.body.startDate,
                 endDate: req.body.endDate,
                 route: {
