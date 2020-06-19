@@ -25,6 +25,7 @@ class Profil extends Component {
   }
 
 componentDidMount() {
+    
     const token = localStorage.usertoken
     const decoded = jwt_decode(token)
     
@@ -36,7 +37,7 @@ componentDidMount() {
     }); 
     this.showPlans(decoded._id);
 };
-//TODO: 
+// TODO: 
 showPlans(id){
     getAllPlans(id).then(plans => {
         this.setState({plans: plans});
@@ -65,7 +66,7 @@ render() {
                 onClick={this.handleLogout}>
                     Log out
             </Button>
-            {/* <table>
+            <table>
                 <tbody>
                 <tr>
                     <td>Username</td>
@@ -80,7 +81,7 @@ render() {
                     <td>{this.state.id}</td>
                 </tr>
                 </tbody>
-            </table> */}
+            </table>
             <div>
                 <Typography variant="h5" component="h4">Your Plans:</Typography>
                 {this.state.plans.map(plan => (
@@ -92,28 +93,13 @@ render() {
                             <Typography color="textSecondary" gutterBottom>
                                 {plan._id}
                             </Typography>
-                      {/* <Typography className={classes.pos} color="textSecondary">
-                        adjective
-                      </Typography>
-                      <Typography variant="body2" component="p">
-                        well meaning and kindly.
-                        <br />
-                        {'"a benevolent smile"'}
-                      </Typography> */}
                         </CardContent>
                         <CardActions>
-                            <Link to={{ pathname: `/plans/${plan._id}`, userId: this.state.id, planId: plan._id }} onClick={e => e.stopPropagation()}>Open Plan</Link>
-                            {/* <Button size="small">Open Plan</Button> */}
+                            <Link to={{ pathname: `/${this.state.id}/plans/${plan._id}`, userId: this.state.id }} onClick={e => e.stopPropagation()}>Open Plan</Link>
                         </CardActions>
                     </Card>
-                    // <div>{plan.title}</div>
                 ))}
             </div>
-            {/* <Button 
-                variant="contained"
-                color="secondary">  
-                <Link to={{ pathname: '/newPlan', userId: this.state.id}}>Create a new Plan</Link>
-            </Button> */}
             <Link to={{ pathname: '/newPlan', userId: this.state.id}}>
                 <Button 
                     variant="contained"

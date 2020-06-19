@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import history from './history';
-import { register, login } from './UserFunctions';
+import { register } from './UserFunctions';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';

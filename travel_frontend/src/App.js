@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+// import jwt_decode from 'jwt-decode';
 import './App.css';
 import SignUp from './SignUp';
 import LogIn from './LogIn';
@@ -43,7 +44,7 @@ class App extends Component {
                   path="/profil" 
                   render={(props) => (
                     <div className="page">
-                      <Profil {...props} />
+                      <Profil {...props}/>
                     </div>
                   )} 
                 />
@@ -58,17 +59,19 @@ class App extends Component {
                 />
                 <Route 
                   exact 
-                  path="/plans/:planId" 
-                  render={(props) => (
+                  path="/:userId/plans/:planId" 
+                  render={(routeProps) => (
                     <div className="page">
-                      <Plan {...props}/>
+                      <Plan {...routeProps}/>
                     </div>
                   )} 
                 />
                 <Route 
-                  render={(routeProps) => (
+                  exact
+                  path="/"
+                  render={(props) => (
                     <div className="page">
-                      <Welcome />
+                      <Welcome {...props}/>
                     </div>
                   )} 
                 />

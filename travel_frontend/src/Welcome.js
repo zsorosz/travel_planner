@@ -17,7 +17,7 @@ class Welcome extends Component {
     };
     render(){
         if(this.state.usertoken){
-            return(<Profil />)
+            return(<Profil state={this.props.state}/>)
         } else {
             return(
                 <Container component="main" maxWidth="xs">

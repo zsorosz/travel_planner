@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
@@ -10,48 +11,54 @@ class Plan extends Component{
     constructor(props) {
         super(props)
         this.state = {
-          plan: {},
-          userId: this.props.location.userId,
-          planId: this.props.location.planId,
-          errors: {}
+            loading : true,
+            plan: '',
+            arrivalCity: '',
+            userId: this.props.match.params.userId,
+            planId: this.props.match.params.planId,
+            errors: {}
         }
-        this.showPlan = this.showPlan.bind(this);
+        this.showPlanDetails = this.showPlanDetails.bind(this);
       }
     
     componentDidMount() {
-        // const userId = this.props.location.userId;
-        // const planId = this.props.location.planId;
-        // this.setState({ userId: userId, planId: planId });
-        this.showPlan(this.state.userId, this.state.planId);
+        this.showPlanDetails(this.state.userId, this.state.planId);
     };
     // //TODO: 
-    showPlan(userId, planId){
+    showPlanDetails(userId, planId){
         showPlan(userId, planId).then(plan => {
-            this.setState({plan: plan});
-            console.log(this.state.plan);   
+            this.setState({plan: plan, loading: false});
         })
         .catch(err => {
         console.log(err)
         })
     }
     render(){
+        if(this.state.loading){
+            return (<h3>Loading...</h3>)
+        }
         return(
-            <div>
-                <Typography variant="h5" component="h4">Your Plan:</Typography>
-                    <Card>
-                        <CardContent>
-                            <Typography variant="h5" component="h2">
-                                {this.state.plan.title}
-                            </Typography>
-                            <Typography color="textSecondary" gutterBottom>
-                                {this.state.plan._id}
-                            </Typography>
-                        </CardContent>
-                        <CardActions>
-                            <Button size="small">Edit Plan</Button>
-                        </CardActions>
-                    </Card>
-            </div>
+            <Container component="main" maxWidth="xs">
+                <Card>
+                    <CardContent>
+                        <Typography variant="h4" component="h2">
+                            {this.state.plan.title}
+                        </Typography>
+                        <Typography variant="h6" component="h4">
+                            From: {this.state.plan.route[0].departureCity}
+                        </Typography>
+                        <Typography variant="h6" component="h4">
+                            To: {this.state.plan.route[0].arrivalCity}
+                        </Typography>
+                        <Typography variant="h6" component="h4">
+                            Travel by: {this.state.plan.route[0].travelMethod}
+                        </Typography>
+                    </CardContent>
+                    <CardActions>
+                        <Button size="small">Edit Plan</Button>
+                    </CardActions>
+                </Card>
+            </Container>
         )
     }
 }
