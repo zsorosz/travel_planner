@@ -59,9 +59,9 @@ class App extends Component {
                 <Route 
                   exact 
                   path="/plans/:planId" 
-                  render={(routeProps) => (
+                  render={(props) => (
                     <div className="page">
-                      <Plan planId={routeProps.match.params.planId}/>
+                      <Plan {...props}/>
                     </div>
                   )} 
                 />

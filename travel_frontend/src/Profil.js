@@ -102,7 +102,7 @@ render() {
                       </Typography> */}
                         </CardContent>
                         <CardActions>
-                            <Link to={`/plans/${plan._id}`} onClick={e => e.stopPropagation()}>Open Plan</Link>
+                            <Link to={{ pathname: `/plans/${plan._id}`, userId: this.state.id, planId: plan._id }} onClick={e => e.stopPropagation()}>Open Plan</Link>
                             {/* <Button size="small">Open Plan</Button> */}
                         </CardActions>
                     </Card>

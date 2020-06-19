@@ -26,3 +26,16 @@ export const getAllPlans = userId => {
       console.log(err)
     })
 }
+
+export const showPlan = (userId, planId)=> {
+  return axios
+    .get(`/api/users/${userId}/plans/${planId}`, {
+    })
+    .then(response => {
+      console.log(response)
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
