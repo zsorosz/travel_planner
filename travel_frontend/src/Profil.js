@@ -34,7 +34,6 @@ componentDidMount() {
       username: decoded.username,
       email: decoded.email,
       id: decoded._id
-    //   plans: decoded.plans
     }); 
     this.showPlans(decoded._id);
 };
@@ -90,7 +89,7 @@ render() {
                         <CardMedia
                             component="img"
                             height="140"
-                            image={`https://source.unsplash.com/1600x900/?${plan.route[0].arrivalCity}`}
+                            image={`https://source.unsplash.com/1600x900/?${plan.route.arrivalCity}`}
                             title={plan.title}
                         />
                         <CardContent>
@@ -98,7 +97,7 @@ render() {
                                 {plan.title}
                             </Typography>
                             <Typography color="textSecondary" gutterBottom>
-                                {plan._id}
+                                From {plan.route.departureCity} to {plan.route.arrivalCity}
                             </Typography>
                         </CardContent>
                         <CardActions>

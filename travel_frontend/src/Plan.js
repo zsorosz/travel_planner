@@ -46,13 +46,13 @@ class Plan extends Component{
                             {this.state.plan.title}
                         </Typography>
                         <Typography variant="h6" component="h4">
-                            From: {this.state.plan.route[0].departureCity}
+                            From: {this.state.plan.route.departureCity}
                         </Typography>
                         <Typography variant="h6" component="h4">
-                            To: {this.state.plan.route[0].arrivalCity}
+                            To: {this.state.plan.route.arrivalCity}
                         </Typography>
                         <Typography variant="h6" component="h4">
-                            Travel by: {this.state.plan.route[0].travelMethod}
+                            Travel by: {this.state.plan.route.travelMethod}
                         </Typography>
                     </CardContent>
                     <CardActions>

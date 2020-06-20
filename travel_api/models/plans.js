@@ -4,7 +4,7 @@ const plansSchema = new mongoose.Schema({
     title: String,
     startDate: Number,
     endDate: Number,
-    route: [
+    route:
         {
             id: {},
             departureCity: String,
@@ -13,7 +13,6 @@ const plansSchema = new mongoose.Schema({
             arrivalDate: Date,
             travelMethod: String
         }
-    ]
 });
 
 module.exports = mongoose.model("Plans", plansSchema);

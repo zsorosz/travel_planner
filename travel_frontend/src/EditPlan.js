@@ -24,9 +24,9 @@ class EditPlan extends Component {
     componentDidMount () {
         this.setState({
             title: this.props.location.plan.title,
-            departureCity: this.props.location.plan.route[0].departureCity,
-            arrivalCity: this.props.location.plan.route[0].arrivalCity,
-            travelMethod: this.props.location.plan.route[0].travelMethod,
+            departureCity: this.props.location.plan.route.departureCity,
+            arrivalCity: this.props.location.plan.route.arrivalCity,
+            travelMethod: this.props.location.plan.route.travelMethod,
             loading: false
           });     
     }
@@ -50,6 +50,9 @@ class EditPlan extends Component {
             history.push("/profil")
         });
     };
+    handleCancel(){
+        history.push("/");
+    }
     render() {
         if(this.state.loading){
             return (<h3>Loading...</h3>)
@@ -112,6 +115,12 @@ class EditPlan extends Component {
                         color="secondary"
                     >
                         Save
+                    </Button>
+                    <Button 
+                        variant="contained"
+                        color="primary"
+                        onClick={this.handleCancel}>
+                            Cancel
                     </Button>
                 </form>
             </Container>
