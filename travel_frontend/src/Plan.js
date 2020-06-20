@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import history from './history';
 import { Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
@@ -6,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import { showPlan } from './PlanFunctions';
+import { showPlan, deletePlan } from './PlanFunctions';
 
 class Plan extends Component{
     constructor(props) {
@@ -20,6 +21,7 @@ class Plan extends Component{
             errors: {}
         }
         this.showPlanDetails = this.showPlanDetails.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
       }
     
     componentDidMount() {
@@ -32,6 +34,15 @@ class Plan extends Component{
         })
         .catch(err => {
         console.log(err)
+        })
+    }
+
+    handleDelete(){
+        deletePlan(this.props.match.params.userId, this.props.match.params.planId).then(() => {
+            history.push('/')
+        })
+        .catch(err => {
+            console.log(err)
         })
     }
     render(){
@@ -58,6 +69,11 @@ class Plan extends Component{
                     <CardActions>
                         <Link to={{ pathname: `/${this.state.userId}/plans/${this.state.planId}/edit`, plan: this.state.plan }} onClick={e => e.stopPropagation()}>
                             <Button size="small">Edit Plan</Button>
+                        </Link>
+                        <Link to={{ pathname: `/${this.state.userId}`, plan: this.state.plan }} onClick={e => e.stopPropagation()}>
+                            <Button 
+                                onClick={this.handleDelete}
+                                size="small">Delete Plan</Button>
                         </Link>
                     </CardActions>
                 </Card>

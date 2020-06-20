@@ -52,3 +52,16 @@ export const updatePlan = (userId, planId, updatedPlan) => {
       console.log('Plan Updated')
     })
 }
+
+export const deletePlan = (userId, planId)=> {
+  return axios
+    .delete(`/api/users/${userId}/plans/${planId}`, {
+    })
+    .then(response => {
+      console.log(response)
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}

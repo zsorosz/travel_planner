@@ -91,12 +91,16 @@ router.put("/:planId", (req, res) => {
     })
   });
 
-// router.get('/', function(req, res){
-//     db.User.findById(req.params.userId).then((foundUser) => {
-//         res.json(foundUser);
-//     }).catch((err) => {
-//         res.send(err)
-//     })
-// })
+// Delete Plan
+router.delete("/:planId", (req, res) => {
+    Plans.findByIdAndRemove(req.params.planId, function(err){
+        if(err){
+            res.send(err);
+        } else {
+            res.json({message: 'We deleted it!'});
+        }
+    });
+});
+
 
 module.exports = router;
