@@ -46,7 +46,7 @@ class NewPlan extends Component {
     };
     render() {
         return (
-            <Container class='form-container'>
+            <Container component="main" maxWidth="xs" className='form-container'>
                 <Typography component="h1" variant="h5">
                     Create a New Plan
                 </Typography>
@@ -71,7 +71,6 @@ class NewPlan extends Component {
                         fullWidth
                         id="departureCity"
                         label="From"
-                        autoFocus
                         value={this.state.departureCity}
                         onChange={this.onChange}
                     />

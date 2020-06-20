@@ -16,10 +16,13 @@ class EditPlan extends Component {
             departureCity: '',
             arrivalCity: '',
             travelMethod: '',
+            userId: this.props.match.params.userId,
+            planId: this.props.match.params.planId,
             errors: {}
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
     };
     componentDidMount () {
         this.setState({
@@ -45,20 +48,20 @@ class EditPlan extends Component {
             travelMethod: this.state.travelMethod
         }
 
-        updatePlan(this.props.match.params.userId, this.props.match.params.planId, updatedPlan).then(res => {
+        updatePlan(this.state.userId, this.state.planId, updatedPlan).then(res => {
             console.log('Success', res);
-            history.push("/profil")
+            history.push(`/${this.state.userId}/plans/${this.state.planId}`)
         });
     };
     handleCancel(){
-        history.push("/");
+        history.push(`/${this.state.userId}/plans/${this.state.planId}`);
     }
     render() {
         if(this.state.loading){
             return (<h3>Loading...</h3>)
         }
         return (
-            <Container class='form-container'>
+            <Container component="main" maxWidth="xs" className='form-container'>
                 <Typography component="h1" variant="h5">
                     Edit Plan
                 </Typography>
@@ -108,20 +111,23 @@ class EditPlan extends Component {
                         value={this.state.travelMethod}
                         onChange={this.onChange}
                     />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="secondary"
-                    >
-                        Save
-                    </Button>
-                    <Button 
-                        variant="contained"
-                        color="primary"
-                        onClick={this.handleCancel}>
-                            Cancel
-                    </Button>
+                    <div className='editForm-cta'>
+                        <Button
+                            type="submit"
+                            className='editForm-cta-button'
+                            variant="contained"
+                            color="secondary"
+                        >
+                            Save
+                        </Button>
+                        <Button 
+                            variant="contained"
+                            className='editForm-cta-button'
+                            color="primary"
+                            onClick={this.handleCancel}>
+                                Cancel
+                        </Button>
+                    </div>
                 </form>
             </Container>
         )

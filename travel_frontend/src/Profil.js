@@ -57,7 +57,7 @@ handleLogout(){
 
 render() {
     return (
-        <Container component="main" maxWidth="xs" className='profil-container'>
+        <Container component="main" className='profil-container'>
             <div className='profil-header'>
                 <Typography component="h1" variant="h4">Hi, {this.state.username}!
                 </Typography>

@@ -5,9 +5,10 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
+// import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import { showPlan, deletePlan } from './PlanFunctions';
+import './styles/Plan.css';
 
 class Plan extends Component{
     constructor(props) {
@@ -50,12 +51,27 @@ class Plan extends Component{
             return (<h3>Loading...</h3>)
         }
         return(
-            <Container component="main" maxWidth="xs">
-                <Card>
+            <Container component="main" className='plan-container'>
+                <Typography variant="h4" component="h2">
+                    {this.state.plan.title}
+                </Typography>
+                <Link to={{ pathname: `/${this.state.userId}/plans/${this.state.planId}/edit`, plan: this.state.plan }} onClick={e => e.stopPropagation()} className='link'>
+                    <Button 
+                        size="small"
+                        color='primary'>
+                            Edit Plan
+                    </Button>
+                </Link>
+                <Link to={{ pathname: `/${this.state.userId}`, plan: this.state.plan }} onClick={e => e.stopPropagation()} className='link'>
+                    <Button 
+                        onClick={this.handleDelete}
+                        size="small"
+                        color='primary'>
+                            Delete Plan
+                    </Button>
+                </Link>
+                <Card className='profil-card'>
                     <CardContent>
-                        <Typography variant="h4" component="h2">
-                            {this.state.plan.title}
-                        </Typography>
                         <Typography variant="h6" component="h4">
                             From: {this.state.plan.route.departureCity}
                         </Typography>
@@ -66,16 +82,6 @@ class Plan extends Component{
                             Travel by: {this.state.plan.route.travelMethod}
                         </Typography>
                     </CardContent>
-                    <CardActions>
-                        <Link to={{ pathname: `/${this.state.userId}/plans/${this.state.planId}/edit`, plan: this.state.plan }} onClick={e => e.stopPropagation()}>
-                            <Button size="small">Edit Plan</Button>
-                        </Link>
-                        <Link to={{ pathname: `/${this.state.userId}`, plan: this.state.plan }} onClick={e => e.stopPropagation()}>
-                            <Button 
-                                onClick={this.handleDelete}
-                                size="small">Delete Plan</Button>
-                        </Link>
-                    </CardActions>
                 </Card>
             </Container>
         )
