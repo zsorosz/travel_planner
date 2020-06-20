@@ -10,6 +10,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import { getAllPlans } from './PlanFunctions';
+import './styles/Profil.css';
 
 class Profil extends Component {
   constructor(props) {
@@ -56,17 +57,18 @@ handleLogout(){
 
 render() {
     return (
-        <Container component="main" maxWidth="xs">
-            <Typography component="h1" variant="h4">Hi, {this.state.username}!
-            </Typography>
-            <Button 
-                fullWidth
-                variant="contained"
-                color="secondary"
-                onClick={this.handleLogout}>
-                    Log out
-            </Button>
-            <table>
+        <Container component="main" maxWidth="xs" className='profil-container'>
+            <div className='profil-header'>
+                <Typography component="h1" variant="h4">Hi, {this.state.username}!
+                </Typography>
+                <Button 
+                    variant="contained"
+                    color="secondary"
+                    onClick={this.handleLogout}>
+                        Log out
+                </Button>
+            </div>
+            {/* <table>
                 <tbody>
                 <tr>
                     <td>Username</td>
@@ -81,11 +83,19 @@ render() {
                     <td>{this.state.id}</td>
                 </tr>
                 </tbody>
-            </table>
-            <div>
+            </table> */}
+            <Link to={{ pathname: '/newPlan', userId: this.state.id}} className='link profil-link-newPlan'>
+                <Button 
+                    fullWidth
+                    variant="contained"
+                    color="primary">
+                        Create a new Plan
+                </Button>
+            </Link>
+            <div className='profil-main'>
                 <Typography variant="h5" component="h4">Your Plans:</Typography>
                 {this.state.plans.map(plan => (
-                    <Card>
+                    <Card className='profil-card'>
                         <CardMedia
                             component="img"
                             height="140"
@@ -101,18 +111,17 @@ render() {
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Link to={{ pathname: `/${this.state.id}/plans/${plan._id}`, userId: this.state.id }} onClick={e => e.stopPropagation()}>Open Plan</Link>
+                            <Link to={{ pathname: `/${this.state.id}/plans/${plan._id}`, userId: this.state.id }} onClick={e => e.stopPropagation()} className='link'>
+                                <Button 
+                                    size="small" 
+                                    color="primary">
+                                        Open Plan
+                                </Button>
+                            </Link>
                         </CardActions>
                     </Card>
                 ))}
             </div>
-            <Link to={{ pathname: '/newPlan', userId: this.state.id}}>
-                <Button 
-                    variant="contained"
-                    color="primary">
-                        Create a new Plan
-                </Button>
-            </Link>
         </Container>
     )
   }

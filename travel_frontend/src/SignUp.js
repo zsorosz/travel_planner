@@ -43,7 +43,7 @@ class SignUp extends Component {
     };
     render() {
         return (
-            <Container class='form-container'>
+            <Container component="main" maxWidth="xs" className='form-container'>
                 <Typography component="h1" variant="h5">
                     Sign up
                 </Typography>
