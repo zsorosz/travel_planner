@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
 import { getAllPlans } from './PlanFunctions';
 
 class Profil extends Component {
@@ -86,6 +87,12 @@ render() {
                 <Typography variant="h5" component="h4">Your Plans:</Typography>
                 {this.state.plans.map(plan => (
                     <Card>
+                        <CardMedia
+                            component="img"
+                            height="140"
+                            image={`https://source.unsplash.com/1600x900/?${plan.route[0].arrivalCity}`}
+                            title={plan.title}
+                        />
                         <CardContent>
                             <Typography variant="h5" component="h2">
                                 {plan.title}

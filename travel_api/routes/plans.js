@@ -60,12 +60,24 @@ router.post("/new", function(req, res){
 //Show Plan
   
 router.get('/:planId', (req, res) => {
-    Plans.findById(req.params.planId).then((foundPlan) => {
+    Plans.findById(req.params.planId)
+    .then((foundPlan) => {
         res.json(foundPlan);
     }).catch((err) => {
         res.send(err)
     })
-  })
+})
+
+// Update plan
+
+router.put("/:planId", (req, res) => {
+    Plans.findByIdAndUpdate(req.params.planId, req.body, {new: true})
+    .then((plan) => {
+        res.json(plan)
+    }).catch((err) => {
+        res.send(err)
+    })
+  });
 
 // router.get('/', function(req, res){
 //     db.User.findById(req.params.userId).then((foundUser) => {
