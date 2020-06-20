@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -55,7 +56,9 @@ class Plan extends Component{
                         </Typography>
                     </CardContent>
                     <CardActions>
-                        <Button size="small">Edit Plan</Button>
+                        <Link to={{ pathname: `/${this.state.userId}/plans/${this.state.planId}/edit`, plan: this.state.plan }} onClick={e => e.stopPropagation()}>
+                            <Button size="small">Edit Plan</Button>
+                        </Link>
                     </CardActions>
                 </Card>
             </Container>

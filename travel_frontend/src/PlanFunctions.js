@@ -39,3 +39,16 @@ export const showPlan = (userId, planId)=> {
       console.log(err)
     })
 }
+
+export const updatePlan = (userId, planId, updatedPlan) => {
+  return axios
+    .put(`/api/users/${userId}/plans/${planId}`, {
+      title: updatedPlan.title,
+      departureCity: updatedPlan.departureCity,
+      arrivalCity: updatedPlan.arrivalCity,
+      travelMethod: updatedPlan.travelMethod
+    })
+    .then(response => {
+      console.log('Plan Updated')
+    })
+}

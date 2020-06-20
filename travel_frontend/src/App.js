@@ -9,6 +9,7 @@ import Welcome from './Welcome';
 import Profil from './Profil';
 import NewPlan from './NewPlan';
 import Plan from './Plan';
+import EditPlan from './EditPlan';
 import history from './history';
 import './styles/Page.css';
 
@@ -63,6 +64,15 @@ class App extends Component {
                   render={(routeProps) => (
                     <div className="page">
                       <Plan {...routeProps}/>
+                    </div>
+                  )} 
+                />
+                <Route 
+                  exact 
+                  path="/:userId/plans/:planId/edit" 
+                  render={(props) => (
+                    <div className="page">
+                      <EditPlan {...props}/>
                     </div>
                   )} 
                 />

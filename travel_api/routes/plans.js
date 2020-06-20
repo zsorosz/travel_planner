@@ -71,7 +71,19 @@ router.get('/:planId', (req, res) => {
 // Update plan
 
 router.put("/:planId", (req, res) => {
-    Plans.findByIdAndUpdate(req.params.planId, req.body, {new: true})
+    const updatedPlan = {
+        title: req.body.title,
+        startDate: req.body.startDate,
+        endDate: req.body.endDate,
+        route: {
+            departureCity: req.body.departureCity,
+            arrivalCity: req.body.arrivalCity,
+            departureDate: req.body.departureDate,
+            arrivalDate: req.body.arrivalDate,
+            travelMethod: req.body.travelMethod
+        }
+    }
+    Plans.findByIdAndUpdate(req.params.planId, updatedPlan, {new: true})
     .then((plan) => {
         res.json(plan)
     }).catch((err) => {
