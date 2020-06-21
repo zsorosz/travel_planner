@@ -95,7 +95,7 @@ render() {
             <div className='profil-main'>
                 <Typography variant="h5" component="h4">Your Plans:</Typography>
                 {this.state.plans.map(plan => (
-                    <Card className='profil-card'>
+                    <Card className='profil-card' key={plan._id}>
                         <CardMedia
                             component="img"
                             height="140"
