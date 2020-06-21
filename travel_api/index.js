@@ -26,8 +26,9 @@ app.get("/", (req, res) => {
     res.sendFile('index.html')
 })
 
-app.listen(port, () => {
-    console.log("App is running on port " + port);
+const b_port = process.env.PORT || port;
+app.listen(b_port, () => {
+    console.log("App is running on port " + b_port);
     
 })
 
