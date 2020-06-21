@@ -1,1 +1,1 @@
-web: cd travel_frontend && npm i && npm start
+web: cd travel_frontend && npm run start
