@@ -1,4 +1,6 @@
 {
+    "name": "travel_planner",
+    "version": "0.1.0",
     "scripts": {
         "frontend": "cd travel_frontend && react-scripts start",
         "api": "cd travel_api && node index.js",
