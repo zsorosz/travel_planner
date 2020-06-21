@@ -1,1 +1,1 @@
-web: node travel_api/index.js
+web: node travel_frontend/app.js
