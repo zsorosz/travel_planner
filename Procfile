@@ -1,1 +1,1 @@
-web: node travel_frontend/app.js
+web: cd travel_frontend && npm i && npm start
