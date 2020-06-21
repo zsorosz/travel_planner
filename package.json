@@ -2,7 +2,7 @@
     "name": "travel_planner",
     "version": "0.1.0",
     "scripts": {
-        "frontend": "cd travel_frontend && react-scripts start",
+        "frontend": "cd travel_frontend && npm start",
         "api": "cd travel_api && node index.js",
         "dev": "concurrently --kill-others-on-fail \"npm run api\" \"npm run frontend\"",
         "heroku-postbuild": "cd travel_frontend && npm install && npm run build"
