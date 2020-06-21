@@ -1,9 +1,18 @@
 {
     "scripts": {
-    "frontend": "cd travel_frontend && react-scripts start",
-    "api": "cd travel_api && node index.js",
-    "dev": "concurrently --kill-others-on-fail \"npm run api\" \"npm run frontend\"",
-    "heroku-postbuild": "cd travel_frontend && npm install && npm run build"
-  }
-
+        "frontend": "cd travel_frontend && react-scripts start",
+        "api": "cd travel_api && node index.js",
+        "dev": "concurrently --kill-others-on-fail \"npm run api\" \"npm run frontend\"",
+        "heroku-postbuild": "cd travel_frontend && npm install && npm run build"
+    },
+    "dependencies": {
+        "bcrypt": "^5.0.0",
+        "body-parser": "^1.19.0",
+        "cors": "^2.8.5",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "express-session": "^1.17.1",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^5.9.19"
+    }
 }
