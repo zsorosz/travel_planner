@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-// import jwt_decode from 'jwt-decode';
 import './App.css';
 import SignUp from './SignUp';
 import LogIn from './LogIn';
