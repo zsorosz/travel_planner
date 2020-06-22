@@ -26,13 +26,13 @@ class Welcome extends Component {
                     </Typography>
                     <div className='cta'>
                         <Button 
-                            className='button-signup'
+                            className='button button-signup'
                             variant="contained"
                             color="primary">
                                 <Link to="/register" className='link link-signup'>Sign up</Link>
                         </Button>
                         <Button 
-                            className='button-login'
+                            className='button button-login'
                             variant="contained"
                             color="secondary"
                             onClick="/login">

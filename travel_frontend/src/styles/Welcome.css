@@ -7,15 +7,32 @@
 
 .text {
     color: white;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.54);
 }
 
 .cta {
     display: flex;
-    justify-content: space-evenly;
-    margin-top: 4rem;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.button {
+    width: 50%;
+    height: 3rem;
+    margin: .3rem !important;
 }
 
 .link {
     text-decoration: none;
     color: white;
+}
+
+@media only screen and (min-width: 600px) {
+    .container {
+        padding-top: 8rem;
+    }
+    .cta {
+        margin-top: 4rem;
+    }
 }
