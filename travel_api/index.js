@@ -7,8 +7,8 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(__dirname + '/public'));
-app.use(express.static(__dirname + '/views'));
+// app.use(express.static(__dirname + '/public'));
+// app.use(express.static(__dirname + '/views'));
 
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
