@@ -70,14 +70,14 @@ render() {
             </div>
             <Link to={{ pathname: '/newPlan', userId: this.state.id}} className='link profil-link-newPlan'>
                 <Button 
-                    fullWidth
+                    className='profil-newPlan-button'
                     variant="contained"
                     color="primary">
                         Create a new Plan
                 </Button>
             </Link>
+            <Typography variant="h5" component="h4" className='profil-text'>Your Plans:</Typography>
             <div className='profil-main'>
-                <Typography variant="h5" component="h4">Your Plans:</Typography>
                 {this.state.plans.map(plan => (
                     <Card className='profil-card' key={plan._id}>
                         <CardMedia
