@@ -21,7 +21,7 @@ class Welcome extends Component {
             return(<Profil state={this.props.state}/>)
         } else {
             return(
-                <Container component="main" className='container'>
+                <Container component="main" maxWidth="xl" className='container'>
                     <Typography component="h1" variant="h2" className='text text-title'>Welcome to the Travel Planner
                     </Typography>
                     <div className='cta'>

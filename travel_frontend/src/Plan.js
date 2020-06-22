@@ -51,7 +51,7 @@ class Plan extends Component{
             return (<h3>Loading...</h3>)
         }
         return(
-            <Container component="main" className='plan-container'>
+            <Container component="main" maxWidth="xl" className='plan-container'>
                 <Typography variant="h4" component="h2">
                     {this.state.plan.title}
                 </Typography>
@@ -70,7 +70,7 @@ class Plan extends Component{
                             Delete Plan
                     </Button>
                 </Link>
-                <Card className='profil-card plan-card'>
+                <Card className='plan-card'>
                     <CardContent>
                         <Typography variant="h6" component="h4">
                             From: {this.state.plan.route.departureCity}
