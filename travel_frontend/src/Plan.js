@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
 import { showPlan, deletePlan } from './PlanFunctions';
 import './styles/Plan.css';
 
@@ -69,7 +70,7 @@ class Plan extends Component{
                             Delete Plan
                     </Button>
                 </Link>
-                <Card className='profil-card'>
+                <Card className='profil-card plan-card'>
                     <CardContent>
                         <Typography variant="h6" component="h4">
                             From: {this.state.plan.route.departureCity}
@@ -81,6 +82,15 @@ class Plan extends Component{
                             Travel by: {this.state.plan.route.travelMethod}
                         </Typography>
                     </CardContent>
+                    <CardActions>     
+                        <Link to={{ pathname: `/${this.state.userId}/plans/${this.state.planId}/edit`, plan: this.state.plan }} onClick={e => e.stopPropagation()} className='link'>
+                            <Button 
+                                size="small"
+                                color='primary'>
+                                    Edit Route
+                            </Button>
+                        </Link>
+                    </CardActions>
                 </Card>
             </Container>
         )
