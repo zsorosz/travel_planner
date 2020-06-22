@@ -22,9 +22,9 @@ const plansRoutes = require('./routes/plans');
 app.use('/api/users', userRoutes);
 app.use("/api/users/:id/plans", plansRoutes);
 
-app.get("/", (req, res) => {
-    res.sendFile('index.html')
-})
+// app.get("/", (req, res) => {
+//     res.sendFile('index.html')
+// })
 
 const b_port = process.env.PORT || port;
 app.listen(b_port, () => {
