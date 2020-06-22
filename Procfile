@@ -1,1 +1,0 @@
-web: cd travel_frontend && npm run start
