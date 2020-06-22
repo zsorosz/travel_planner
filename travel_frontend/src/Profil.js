@@ -68,22 +68,6 @@ render() {
                         Log out
                 </Button>
             </div>
-            {/* <table>
-                <tbody>
-                <tr>
-                    <td>Username</td>
-                    <td>{this.state.username}</td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td>{this.state.email}</td>
-                </tr>
-                <tr>
-                    <td>UserID</td>
-                    <td>{this.state.id}</td>
-                </tr>
-                </tbody>
-            </table> */}
             <Link to={{ pathname: '/newPlan', userId: this.state.id}} className='link profil-link-newPlan'>
                 <Button 
                     fullWidth

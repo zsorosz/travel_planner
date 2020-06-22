@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../models');
 const helpers = require('../helpers/users');
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
@@ -9,7 +8,8 @@ const User = require("../models/user");
 
 router.use(cors());
 
-process.env.SECRET_KEY = 'secret';
+require('dotenv').config();
+const secretKey = process.env.SECRET_KEY;
 
 //////////////////////////
 // AUTH ROUTES
@@ -63,7 +63,7 @@ router.post('/login', (req, res) => {
               email: user.email,
               plans: user.plans
             }
-            let token = jwt.sign(payload, process.env.SECRET_KEY, {
+            let token = jwt.sign(payload, secretKey, {
               expiresIn: 1440
             })
             res.send(token)

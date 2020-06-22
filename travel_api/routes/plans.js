@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
-const db = require('../models');
 const User = require('../models/user');
 const Plans = require('../models/plans');
 
