@@ -2,7 +2,7 @@
     "name": "travel_planner",
     "version": "0.1.0",
     "scripts": {
-        "frontend": "cd travel_frontend && npm start",
+        "frontend": "cd travel_frontend && npm run start",
         "api": "cd travel_api && nodemon index.js",
         "dev": "concurrently --kill-others-on-fail \"npm run api\" \"npm run frontend\"",
         "start": "cd travel_api && node index.js",
