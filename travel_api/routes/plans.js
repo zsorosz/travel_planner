@@ -11,13 +11,14 @@ router.get("/", function(req, res){
             console.log(err);
             res.redirect("back");
         } else {
-            Plans.find({}, function(err, allPlans){
-                if(err){
-                    console.log(err);
-                } else{
-                    res.json(allPlans);
-                }
-            });
+            res.json(user.plans)
+            // Plans.find({}, function(err, allPlans){
+            //     if(err){
+            //         console.log(err);
+            //     } else{
+            //         res.json(allPlans);
+            //     }
+            // });
         }
     });
 });
