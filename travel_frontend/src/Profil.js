@@ -42,11 +42,11 @@ componentDidMount() {
 showPlans(id){
     getAllPlans(id).then(plans => {
         this.setState({plans: plans});
-        console.log(this.state.plans);
+        // console.log(this.state.plans);
         
     })
     .catch(err => {
-    console.log(err)
+    // console.log(err)
     })
 }
 
@@ -70,7 +70,7 @@ render() {
                         Log out
                 </Button>
             </div>
-            <Link to={{ pathname: '/newPlan', userId: this.state.id}} className='link profil-link-newPlan'>
+            <Link to={`/${this.state.id}/newPlan`} className='link profil-link-newPlan'>
                 <Button 
                     className='profil-button profil-newPlan-button'
                     variant="contained"

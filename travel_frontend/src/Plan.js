@@ -34,7 +34,7 @@ class Plan extends Component{
             this.setState({plan: plan, loading: false});
         })
         .catch(err => {
-        console.log(err)
+            console.log(err)
         })
     }
 
@@ -52,35 +52,43 @@ class Plan extends Component{
         }
         return(
             <Container component="main" maxWidth="xl" className='plan-container'>
-                <Typography variant="h4" component="h2">
+                <Typography variant="h4" component="h4">
                     {this.state.plan.title}
                 </Typography>
-                <Link to={{ pathname: `/${this.state.userId}/plans/${this.state.planId}/edit`, plan: this.state.plan }} onClick={e => e.stopPropagation()} className='link'>
+                <div className='plan-cta'>
+                    <Link to='/profil' onClick={e => e.stopPropagation()} className='link'>
+                        <Button 
+                            className='link-button link-button-back'
+                            size="small"
+                            >
+                                Back
+                        </Button>
+                    </Link>
+                    <Link to={{ pathname: `/${this.state.userId}/plans/${this.state.planId}/edit`, plan: this.state.plan }} onClick={e => e.stopPropagation()} className='link'>
+                        <Button 
+                            className='link-button link-button-edit'
+                            size="small"
+                            >
+                                Edit Plan
+                        </Button>
+                    </Link>
                     <Button 
-                        className='link-button'
-                        size="small"
-                        >
-                            Edit Plan
-                    </Button>
-                </Link>
-                <Link to={{ pathname: `/${this.state.userId}`, plan: this.state.plan }} onClick={e => e.stopPropagation()} className='link'>
-                    <Button 
-                        className='link-button'
+                        className='link-button link-button-delete'
                         onClick={this.handleDelete}
                         size="small"
                         >
                             Delete Plan
                     </Button>
-                </Link>
+                </div>
                 <Card className='plan-card'>
                     <CardContent>
-                        <Typography variant="h6" component="h4">
+                        <Typography variant="h6" component="h6">
                             From: {this.state.plan.route.departureCity}
                         </Typography>
-                        <Typography variant="h6" component="h4">
+                        <Typography variant="h6" component="h6">
                             To: {this.state.plan.route.arrivalCity}
                         </Typography>
-                        <Typography variant="h6" component="h4">
+                        <Typography variant="h6" component="h6">
                             Travel by: {this.state.plan.route.travelMethod}
                         </Typography>
                     </CardContent>

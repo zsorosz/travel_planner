@@ -14,8 +14,6 @@ import './styles/Page.css';
 
 class App extends Component {
   render(){
-    console.log(window.localStorage.usertoken);
-    
     return (
       <Router history={history}>
         <Route render={({ location }) => (
@@ -60,7 +58,7 @@ class App extends Component {
                 />
                 <Route 
                   exact 
-                  path="/newPlan"
+                  path="/:userId/newPlan"
                   render={(props) => {
                     if(window.localStorage.usertoken){
                       return (

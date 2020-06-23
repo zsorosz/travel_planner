@@ -21,8 +21,7 @@ class NewPlan extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     };
     componentDidMount () {
-        const id = this.props.location.userId;
-        console.log(id);    
+        const id = this.props.location.userId;   
     }
     
     onChange(e) {
@@ -39,9 +38,9 @@ class NewPlan extends Component {
             travelMethod: this.state.travelMethod
         }
 
-        createNewPlan(newPlan, this.props.location.userId).then(res => {
-            console.log('Success', res);
-            history.push("/profil")
+        createNewPlan(newPlan, this.props.match.params.userId).then(res => {
+            // console.log('Success', res);
+            history.push(`/${this.props.match.params.userId}/plans/${res._id}`)
         });
     };
     render() {

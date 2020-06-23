@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import history from './history';
-import { register } from './UserFunctions';
+import { register, login } from './UserFunctions';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
@@ -36,8 +36,12 @@ class SignUp extends Component {
         }
     
         register(newUser).then(res => {
-            console.log('Success', res);
-            history.push("/")
+            // console.log('Success', res);
+            login(newUser).then(res => {
+                if (res) {
+                  history.push('/profil')
+                }
+              })
         })
 
     };

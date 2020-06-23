@@ -49,7 +49,7 @@ class EditPlan extends Component {
         }
 
         updatePlan(this.state.userId, this.state.planId, updatedPlan).then(res => {
-            console.log('Success', res);
+            // console.log('Success', res);
             history.push(`/${this.state.userId}/plans/${this.state.planId}`)
         });
     };

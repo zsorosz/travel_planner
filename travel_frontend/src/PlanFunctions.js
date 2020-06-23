@@ -9,7 +9,8 @@ export const createNewPlan = (newPlan, id) => {
         travelMethod: newPlan.travelMethod
       })
       .then(response => {
-        console.log('New Plan Created')
+        // console.log('New Plan Created')
+        return response.data
       })
 }
 
@@ -19,11 +20,11 @@ export const getAllPlans = userId => {
       // headers: { Authorization: ` ${this.getToken()}` }
     })
     .then(response => {
-      console.log('axios response', response)
+      // console.log('axios response', response)
       return response.data
     })
     .catch(err => {
-      console.log(err)
+      // console.log(err)
     })
 }
 
@@ -32,11 +33,11 @@ export const showPlan = (userId, planId)=> {
     .get(`/api/users/${userId}/plans/${planId}`, {
     })
     .then(response => {
-      console.log(response)
+      // console.log(response)
       return response.data
     })
     .catch(err => {
-      console.log(err)
+      // console.log(err)
     })
 }
 
@@ -49,7 +50,7 @@ export const updatePlan = (userId, planId, updatedPlan) => {
       travelMethod: updatedPlan.travelMethod
     })
     .then(response => {
-      console.log('Plan Updated')
+      // console.log('Plan Updated')
     })
 }
 
@@ -58,10 +59,10 @@ export const deletePlan = (userId, planId)=> {
     .delete(`/api/users/${userId}/plans/${planId}`, {
     })
     .then(response => {
-      console.log(response)
+      // console.log(response)
       return response.data
     })
     .catch(err => {
-      console.log(err)
+      // console.log(err)
     })
 }
