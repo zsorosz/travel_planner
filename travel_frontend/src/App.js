@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router, Switch, Route } from 'react-router-dom';
+import { Router, Switch, Route, Redirect } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './App.css';
 import SignUp from './SignUp';
@@ -14,6 +14,8 @@ import './styles/Page.css';
 
 class App extends Component {
   render(){
+    console.log(window.localStorage.usertoken);
+    
     return (
       <Router history={history}>
         <Route render={({ location }) => (
@@ -42,38 +44,70 @@ class App extends Component {
                 <Route 
                   exact 
                   path="/profil" 
-                  render={(props) => (
-                    <div className="page">
-                      <Profil {...props}/>
-                    </div>
-                  )} 
+                  render={(props) => {
+                    if(window.localStorage.usertoken){
+                      return (
+                        <div className="page">
+                          <Profil {...props}/>
+                        </div>)
+                    } else {
+                      return (
+                        <div className="page">
+                          <Redirect to='/' />
+                        </div>)
+                    }
+                  }} 
                 />
                 <Route 
                   exact 
-                  path="/newPlan" 
-                  render={(props) => (
-                    <div className="page">
-                      <NewPlan {...props}/>
-                    </div>
-                  )} 
+                  path="/newPlan"
+                  render={(props) => {
+                    if(window.localStorage.usertoken){
+                      return (
+                        <div className="page">
+                          <NewPlan {...props}/>
+                        </div>)
+                    } else {
+                      return (
+                        <div className="page">
+                          <Redirect to='/' />
+                        </div>)
+                    }
+                  }}  
                 />
                 <Route 
                   exact 
                   path="/:userId/plans/:planId" 
-                  render={(routeProps) => (
-                    <div className="page">
-                      <Plan {...routeProps}/>
-                    </div>
-                  )} 
+                  render={(routeProps) => {
+                    if(window.localStorage.usertoken){
+                      return (
+                        <div className="page">
+                          <Plan {...routeProps}/>
+                        </div>)
+                    } else {
+                      return (
+                        <div className="page">
+                          <Redirect to='/' />
+                        </div>)
+                    }
+                  }}
                 />
                 <Route 
                   exact 
                   path="/:userId/plans/:planId/edit" 
-                  render={(props) => (
-                    <div className="page">
-                      <EditPlan {...props}/>
-                    </div>
-                  )} 
+                  render={(props) => {
+                    if(window.localStorage.usertoken){
+                      return (
+                        <div className="page">
+                          <EditPlan {...props}/>
+                        </div>)
+                    } else {
+                      return (
+                        <div className="page">
+                          <Redirect to='/' />
+                        </div>)
+                    }
+                  }}
                 />
                 <Route 
                   exact

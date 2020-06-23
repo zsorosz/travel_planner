@@ -25,19 +25,22 @@ class Welcome extends Component {
                     <Typography component="h1" variant="h2" className='text text-title'>Welcome to the Travel Planner
                     </Typography>
                     <div className='cta'>
-                        <Button 
-                            className='button button-signup'
-                            variant="contained"
-                            color="primary">
-                                <Link to="/register" className='link link-signup'>Sign up</Link>
-                        </Button>
-                        <Button 
-                            className='button button-login'
-                            variant="contained"
-                            color="secondary"
-                            onClick="/login">
-                                <Link to="/login" className='link link-login'>Log in</Link>
-                        </Button>
+                        <Link to="/register" className='link link-signup'>
+                            <Button 
+                                className='welcome-button button-signup'
+                                variant="contained"
+                                color="primary">
+                                    Sign up
+                            </Button>
+                        </Link>
+                        <Link to="/login" className='link link-login'>
+                            <Button 
+                                className='welcome-button button-login'
+                                variant="contained"
+                                color="secondary">
+                                    Log in       
+                            </Button>
+                        </Link>
                     </div>
                 </Container>
             )

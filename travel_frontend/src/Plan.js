@@ -57,16 +57,18 @@ class Plan extends Component{
                 </Typography>
                 <Link to={{ pathname: `/${this.state.userId}/plans/${this.state.planId}/edit`, plan: this.state.plan }} onClick={e => e.stopPropagation()} className='link'>
                     <Button 
+                        className='link-button'
                         size="small"
-                        color='primary'>
+                        >
                             Edit Plan
                     </Button>
                 </Link>
                 <Link to={{ pathname: `/${this.state.userId}`, plan: this.state.plan }} onClick={e => e.stopPropagation()} className='link'>
                     <Button 
+                        className='link-button'
                         onClick={this.handleDelete}
                         size="small"
-                        color='primary'>
+                        >
                             Delete Plan
                     </Button>
                 </Link>

@@ -59,24 +59,27 @@ render() {
     return (
         <Container component="main" maxWidth="xl" className='profil-container'>
             <div className='profil-header'>
-                <Typography component="h1" variant="h4">Hi, {this.state.username}!
+                <Typography component="h6" variant="h6" className='profil-headline'>Hi, {this.state.username}!
                 </Typography>
                 <Button 
+                    className='profil-button profil-logout'
                     variant="contained"
                     color="secondary"
+                    size="small"
                     onClick={this.handleLogout}>
                         Log out
                 </Button>
             </div>
             <Link to={{ pathname: '/newPlan', userId: this.state.id}} className='link profil-link-newPlan'>
                 <Button 
-                    className='profil-newPlan-button'
+                    className='profil-button profil-newPlan-button'
                     variant="contained"
+                    size='small'
                     color="primary">
                         Create a new Plan
                 </Button>
             </Link>
-            <Typography variant="h5" component="h4" className='profil-text'>Your Plans:</Typography>
+            <Typography variant="h6" component="h6" className='profil-text'>Your Plans:</Typography>
             <div className='profil-main'>
                 {this.state.plans.map(plan => (
                     <Card className='profil-card' key={plan._id}>
@@ -87,7 +90,7 @@ render() {
                             title={plan.title}
                         />
                         <CardContent>
-                            <Typography variant="h5" component="h2">
+                            <Typography variant="h6" component="h6">
                                 {plan.title}
                             </Typography>
                             <Typography color="textSecondary" gutterBottom>
