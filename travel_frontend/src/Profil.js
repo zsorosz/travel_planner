@@ -16,12 +16,13 @@ class Profil extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: '',
-      email: '',
-      id: '',
-      plans: [],
-      errors: {},
-      test: 'test'
+        loading: true,
+        username: '',
+        email: '',
+        id: '',
+        plans: [],
+        errors: {},
+        test: 'test'
     }
     this.showPlans = this.showPlans.bind(this);
   }
@@ -41,7 +42,7 @@ componentDidMount() {
 // TODO: 
 showPlans(id){
     getAllPlans(id).then(plans => {
-        this.setState({plans: plans});
+        this.setState({plans: plans, loading: false});
         // console.log(this.state.plans);
         
     })
@@ -56,6 +57,9 @@ handleLogout(){
 }
 
 render() {
+    if(this.state.loading){
+        return (<h3>Loading...</h3>)
+    }
     return (
         <Container component="main" maxWidth="xl" className='profil-container'>
             <div className='profil-header'>
@@ -80,6 +84,7 @@ render() {
                 </Button>
             </Link>
             <Typography variant="h6" component="h6" className='profil-text'>Your Plans:</Typography>
+            {this.state.plans.length === 0 ? <h4 className='profil-text'>You don't have any plans yet</h4> :
             <div className='profil-main'>
                 {this.state.plans.map(plan => (
                     <Card className='profil-card' key={plan._id}>
@@ -109,6 +114,7 @@ render() {
                     </Card>
                 ))}
             </div>
+            }
         </Container>
     )
   }
