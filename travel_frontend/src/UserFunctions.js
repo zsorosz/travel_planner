@@ -9,6 +9,7 @@ export const register = newUser => {
       password: newUser.password
     })
     .then(response => {
+      return response.data
       // console.log('Registered')
     })
 }

@@ -13,17 +13,18 @@ class SignUp extends Component {
     constructor(props) {
         super(props)
         this.state = {
-          username: '',
-          email: '',
-          password: '',
-          errors: {}
+            username: '',
+            email: '',
+            password: '',
+            errorMessage: '',
+            showError: false
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     };
     
     onChange(e) {
-        this.setState({ [e.target.name]: e.target.value })
+        this.setState({ [e.target.name]: e.target.value, showError: false })
     };
     
     onSubmit(e) {
@@ -36,12 +37,16 @@ class SignUp extends Component {
         }
     
         register(newUser).then(res => {
+            if (!res.error) {
             // console.log('Success', res);
             login(newUser).then(res => {
                 if (res) {
                   history.push('/profil')
                 }
               })
+            } else {
+                this.setState({email: '', password: '', username: '', showError: true, errorMessage: res.error})
+            }
         })
 
     };
@@ -51,6 +56,7 @@ class SignUp extends Component {
                 <Typography component="h1" variant="h5">
                     Sign up
                 </Typography>
+                {this.state.showError && <div className="error-message">{this.state.errorMessage}</div>}
                 <form noValidate onSubmit={this.onSubmit}>
                     <TextField
                         autoComplete="fname"
