@@ -69,7 +69,7 @@ router.post('/login', (req, res) => {
             res.send(token)
           } else {
             // Passwords don't match
-            res.json({ error: 'User does not exist' })
+            res.json({ error: 'Wrong password' })
           }
         } else {
           res.json({ error: 'User does not exist' })

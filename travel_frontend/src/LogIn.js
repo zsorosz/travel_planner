@@ -15,13 +15,14 @@ class LogIn extends Component {
         this.state = {
             email: '',
             password: '',
-            errors: {}
+            errorMessage: '',
+            showError: false
         }
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
     onChange(e) {
-        this.setState({ [e.target.name]: e.target.value })
+        this.setState({ [e.target.name]: e.target.value, showError: false })
     }
     onSubmit(e) {
         e.preventDefault()
@@ -32,8 +33,10 @@ class LogIn extends Component {
         }
     
         login(user).then(res => {
-          if (res) {
+          if (!res.error) {
             history.push('/profil')
+          } else {
+            this.setState({email: '', password: '', showError: true, errorMessage: res.error})
           }
         })
     }
@@ -43,6 +46,7 @@ class LogIn extends Component {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
+            {this.state.showError && <div className="error-message">{this.state.errorMessage}</div>}
             <form noValidate onSubmit={this.onSubmit}>
               <TextField
                 variant="outlined"

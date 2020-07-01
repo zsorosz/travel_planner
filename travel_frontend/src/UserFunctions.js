@@ -1,4 +1,5 @@
-import axios from 'axios'
+import axios from 'axios';
+// import history from './history';
 
 export const register = newUser => {
   return axios
@@ -19,11 +20,16 @@ export const login = user => {
       password: user.password
     })
     .then(response => {
-      localStorage.setItem('usertoken', response.data)
-      return response.data
+      if(!response.data.error){
+        localStorage.setItem('usertoken', response.data)
+        return response.data
+      } else {
+        console.log(response.data);
+        return response.data
+      }
     })
     .catch(err => {
-      // console.log(err)
+      console.log(err)
     })
 }
 
@@ -33,10 +39,10 @@ export const getProfile = user => {
       // headers: { Authorization: ` ${this.getToken()}` }
     })
     .then(response => {
-      // console.log(response)
+      console.log(response)
       return response.data
     })
     .catch(err => {
-      // console.log(err)
+      console.log(err)
     })
 }
