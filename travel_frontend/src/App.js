@@ -24,20 +24,36 @@ class App extends Component {
                   exact 
                   path="/register" 
                   history={this.props.history}
-                  render={(routeProps) => (
-                    <div className="page">
-                      <SignUp />
-                    </div>
-                  )} 
+                  render={(props) => {
+                    if(window.localStorage.usertoken){
+                      return (
+                        <div className="page">
+                          <Redirect to='/' />
+                        </div>)
+                    } else {
+                      return (
+                        <div className="page">
+                          <SignUp />
+                        </div>)
+                    }
+                  }} 
                 />
                 <Route 
                   exact 
                   path="/login" 
-                  render={(routeProps) => (
-                    <div className="page">
-                      <LogIn />
-                    </div>
-                  )} 
+                  render={(props) => {
+                    if(window.localStorage.usertoken){
+                      return (
+                        <div className="page">
+                          <Redirect to='/' />
+                        </div>)
+                    } else {
+                      return (
+                        <div className="page">
+                          <LogIn />
+                        </div>)
+                    }
+                  }} 
                 />
                 <Route 
                   exact 
