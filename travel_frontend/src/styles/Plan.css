@@ -15,6 +15,7 @@
 
 .plan-card {
     width: 100%;
+    margin-bottom: .5rem;
 }
 
 .link-button .MuiButton-label {

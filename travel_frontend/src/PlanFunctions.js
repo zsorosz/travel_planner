@@ -47,7 +47,10 @@ export const updatePlan = (userId, planId, updatedPlan) => {
       title: updatedPlan.title,
       departureCity: updatedPlan.departureCity,
       arrivalCity: updatedPlan.arrivalCity,
-      travelMethod: updatedPlan.travelMethod
+      travelMethod: updatedPlan.travelMethod,
+      travelCosts: updatedPlan.travelCosts,
+      departureDate: updatedPlan.departureDate,
+      arrivalDate: updatedPlan.arrivalDate
     })
     .then(response => {
       // console.log('Plan Updated')
@@ -64,5 +67,16 @@ export const deletePlan = (userId, planId)=> {
     })
     .catch(err => {
       // console.log(err)
+    })
+}
+export const updateCosts = (userId, planId, updatedPlan) => {
+  return axios
+    .put(`/api/users/${userId}/plans/${planId}/costs`, {
+      travelCosts: updatedPlan.travelCosts,
+      accomodationCosts: updatedPlan.accomodationCosts,
+      otherCosts: updatedPlan.otherCosts
+    })
+    .then(response => {
+      // console.log('Plan Updated')
     })
 }

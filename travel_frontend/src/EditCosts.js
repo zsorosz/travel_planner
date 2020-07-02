@@ -4,21 +4,17 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import { updatePlan } from './PlanFunctions';
+import { updateCosts } from './PlanFunctions';
 import './styles/FormStyles.css';
 
-class EditPlan extends Component {
+class EditCosts extends Component {
     constructor(props) {
         super(props)
         this.state = {
             loading : true,
-            title: '',
-            departureCity: '',
-            arrivalCity: '',
-            travelMethod: '',
             travelCosts: 0,
-            departureDate: '',
-            arrivalDate: '',
+            accomodationCosts: 0,
+            otherCosts: 0,
             userId: this.props.match.params.userId,
             planId: this.props.match.params.planId,
             errors: {}
@@ -29,13 +25,9 @@ class EditPlan extends Component {
     };
     componentDidMount () {
         this.setState({
-            title: this.props.location.plan.title,
-            departureCity: this.props.location.plan.route.departureCity,
-            arrivalCity: this.props.location.plan.route.arrivalCity,
-            travelMethod: this.props.location.plan.route.travelMethod,
             travelCosts: this.props.location.plan.route.travelCosts,
-            departureDate: this.props.location.plan.route.departureDate,
-            arrivalDate: this.props.location.plan.route.arrivalDate,
+            accomodationCosts: this.props.location.plan.route.accomodationCosts,
+            otherCosts: this.props.location.plan.route.otherCosts,
             loading: false
           });     
     }
@@ -48,16 +40,12 @@ class EditPlan extends Component {
         e.preventDefault();
     
         const updatedPlan = {
-            title: this.state.title,
-            departureCity: this.state.departureCity,
-            arrivalCity: this.state.arrivalCity,
-            travelMethod: this.state.travelMethod,
             travelCosts: this.state.travelCosts,
-            departureDate: this.state.departureDate,
-            arrivalDate: this.state.arrivalDate
+            accomodationCosts: this.state.accomodationCosts,
+            otherCosts: this.state.otherCosts,
         }
 
-        updatePlan(this.state.userId, this.state.planId, updatedPlan).then(res => {
+        updateCosts(this.state.userId, this.state.planId, updatedPlan).then(res => {
             // console.log('Success', res);
             history.push(`/${this.state.userId}/plans/${this.state.planId}`)
         });
@@ -72,75 +60,41 @@ class EditPlan extends Component {
         return (
             <Container component="main" maxWidth="xs" className='form-container'>
                 <Typography component="h1" variant="h5">
-                    Edit Plan
+                    Edit Costs
                 </Typography>
                 <form noValidate onSubmit={this.onSubmit}>
                     <TextField
                         margin="normal"
-                        name="title"
+                        name="travelCosts"
                         variant="outlined"
-                        required
                         fullWidth
-                        id="title"
-                        label="Give a name to your plan"
+                        id="travelCosts"
+                        label="Costs of Transportation"
                         autoFocus
-                        value={this.state.title}
+                        value={this.state.travelCosts}
                         onChange={this.onChange}
                     />
                     <TextField
                         margin="normal"
-                        name="departureCity"
+                        name="accomodationCosts"
                         variant="outlined"
-                        required
                         fullWidth
-                        id="departureCity"
-                        label="From"
-                        value={this.state.departureCity}
+                        id="accomodationCosts"
+                        label="Costs of Accomodation"
+                        autoFocus
+                        value={this.state.accomodationCosts}
                         onChange={this.onChange}
                     />
                     <TextField
-                        variant="outlined"
                         margin="normal"
-                        required
-                        fullWidth
-                        id="arrivalCity"
-                        label="To"
-                        name="arrivalCity"
-                        value={this.state.arrivalCity}
-                        onChange={this.onChange}
-                    />
-                    <TextField
+                        name="otherCosts"
                         variant="outlined"
-                        margin="normal"
-                        required
                         fullWidth
-                        name="travelMethod"
-                        label="Travelling by"
-                        id="travelMethod"
-                        value={this.state.travelMethod}
+                        id="otherCosts"
+                        label="Other Costs"
+                        autoFocus
+                        value={this.state.otherCosts}
                         onChange={this.onChange}
-                    />
-                    <TextField
-                        id="departureDate"
-                        label="From (date)"
-                        type="date"
-                        name="departureDate"
-                        defaultValue="2020-07-02"
-                        onChange={this.onChange}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
-                    <TextField
-                        id="arrivalDate"
-                        label="To (date)"
-                        type="date"
-                        name="arrivalDate"
-                        defaultValue="2020-07-02"
-                        onChange={this.onChange}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
                     />
                     <div className='editForm-cta'>
                         <Button
@@ -165,4 +119,4 @@ class EditPlan extends Component {
     }
 };
 
-export default EditPlan;
+export default EditCosts;

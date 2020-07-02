@@ -89,6 +89,9 @@ class Plan extends Component{
                             To: {this.state.plan.route.arrivalCity}
                         </Typography>
                         <Typography variant="h6" component="h6">
+                            Date: {this.state.plan.route.departureDate} - {this.state.plan.route.arrivalDate}
+                        </Typography>
+                        <Typography variant="h6" component="h6">
                             Travel by: {this.state.plan.route.travelMethod}
                         </Typography>
                     </CardContent>
@@ -98,6 +101,34 @@ class Plan extends Component{
                                 size="small"
                                 color='primary'>
                                     Edit Route
+                            </Button>
+                        </Link>
+                    </CardActions>
+                </Card>
+                <Card className='plan-card'>
+                    <CardContent>
+                        <Typography variant="h6" component="h6">
+                            Travel Costs
+                        </Typography>
+                        <Typography variant="h6" component="h6">
+                            Transportation: {this.state.plan.route.travelCosts} €
+                        </Typography>
+                        <Typography variant="h6" component="h6">
+                            Accomodation: {this.state.plan.route.accomodationCosts} €
+                        </Typography>
+                        <Typography variant="h6" component="h6">
+                            Other Costs: {this.state.plan.route.otherCosts} €
+                        </Typography>
+                        <Typography variant="h6" component="h6">
+                            Total Costs: {this.state.plan.route.otherCosts + this.state.plan.route.travelCosts + this.state.plan.route.accomodationCosts} €
+                        </Typography>
+                    </CardContent>
+                    <CardActions>     
+                        <Link to={{ pathname: `/${this.state.userId}/plans/${this.state.planId}/editCosts`, plan: this.state.plan }} onClick={e => e.stopPropagation()} className='link'>
+                            <Button 
+                                size="small"
+                                color='primary'>
+                                    Edit Costs
                             </Button>
                         </Link>
                     </CardActions>

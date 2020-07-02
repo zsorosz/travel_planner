@@ -11,7 +11,11 @@ const plansSchema = new mongoose.Schema({
             arrivalCity: String,
             departureDate: Date,
             arrivalDate: Date,
-            travelMethod: String
+            travelMethod: String,
+            travelCosts: Number,
+            accomodationCosts: Number,
+            otherCosts: Number,
+            activities: []
         }
 });
 

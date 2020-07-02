@@ -9,6 +9,7 @@ import Profil from './Profil';
 import NewPlan from './NewPlan';
 import Plan from './Plan';
 import EditPlan from './EditPlan';
+import EditCosts from './EditCosts';
 import history from './history';
 import './styles/Page.css';
 
@@ -114,6 +115,23 @@ class App extends Component {
                       return (
                         <div className="page">
                           <EditPlan {...props}/>
+                        </div>)
+                    } else {
+                      return (
+                        <div className="page">
+                          <Redirect to='/' />
+                        </div>)
+                    }
+                  }}
+                />
+                <Route 
+                  exact 
+                  path="/:userId/plans/:planId/editCosts" 
+                  render={(props) => {
+                    if(window.localStorage.usertoken){
+                      return (
+                        <div className="page">
+                          <EditCosts {...props}/>
                         </div>)
                     } else {
                       return (
