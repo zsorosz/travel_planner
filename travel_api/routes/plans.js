@@ -83,7 +83,7 @@ router.put("/:planId", (req, res) => {
             travelMethod: req.body.travelMethod
         }
     }
-    Plans.findByIdAndUpdate(req.params.planId, updatedPlan, {new: true})
+    Plans.findByIdAndUpdate(req.params.planId, { $set: { 'title': req.body.title, 'route.departureCity': req.body.departureCity, 'route.arrivalCity': req.body.arrivalCity, 'route.arrivalDate': req.body.arrivalDate, 'route.travelMethod': req.body.travelMethod } }, {new: true})
     .then((plan) => {
         res.json(plan)
     }).catch((err) => {

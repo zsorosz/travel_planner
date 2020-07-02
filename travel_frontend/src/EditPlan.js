@@ -123,7 +123,7 @@ class EditPlan extends Component {
                     <TextField
                         id="departureDate"
                         label="From (date)"
-                        type="date"
+                        type="datetime-local"
                         name="departureDate"
                         defaultValue="2020-07-02"
                         onChange={this.onChange}
@@ -134,7 +134,7 @@ class EditPlan extends Component {
                     <TextField
                         id="arrivalDate"
                         label="To (date)"
-                        type="date"
+                        type="datetime-local"
                         name="arrivalDate"
                         defaultValue="2020-07-02"
                         onChange={this.onChange}
