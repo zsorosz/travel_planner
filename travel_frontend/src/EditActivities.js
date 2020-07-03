@@ -66,7 +66,7 @@ class EditActivities extends Component {
         return (
             <Container component="main" maxWidth="xs" className='form-container'>
                 <Typography component="h1" variant="h5">
-                    Edit Activities
+                    Add Activities
                 </Typography>
                 <form noValidate onSubmit={this.onSubmit}>
                     <TextField

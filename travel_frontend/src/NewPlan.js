@@ -5,6 +5,10 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormLabel from '@material-ui/core/FormLabel';
 import './styles/FormStyles.css';
 
 class NewPlan extends Component {
@@ -91,17 +95,13 @@ class NewPlan extends Component {
                         value={this.state.arrivalCity}
                         onChange={this.onChange}
                     />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="travelMethod"
-                        label="Travelling by"
-                        id="travelMethod"
-                        value={this.state.travelMethod}
-                        onChange={this.onChange}
-                    />
+                    <FormLabel className='form-label' component="legend">Travel Method</FormLabel>
+                    <RadioGroup id="travelMethod" name="travelMethod" aria-label="travelMethod" onChange={this.onChange} className='radiogroup'>
+                        <FormControlLabel className='radiolabel' value="Car" control={<Radio />} label="Car" />
+                        <FormControlLabel className='radiolabel' value="Airplane" control={<Radio />} label="Airplane" />
+                        <FormControlLabel className='radiolabel' value="Train" control={<Radio />} label="Train" />
+                        <FormControlLabel className='radiolabel' value="Bus" control={<Radio />} label="Bus" />
+                    </RadioGroup>
                     <div className='editForm-dates'>
                         <TextField
                             id="departureDate"
@@ -124,21 +124,23 @@ class NewPlan extends Component {
                             }}
                         />
                     </div>
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        className='editForm-cta-button'
-                        color="primary"
-                    >
-                        Create Plan
-                    </Button>
-                    <Button 
-                        variant="contained"
-                        className='editForm-cta-button'
-                        color="secondary"
-                        onClick={this.handleCancel}>
-                            Cancel
-                    </Button>
+                    <div className='editForm-cta'>
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            className='editForm-cta-button'
+                            color="primary"
+                        >
+                            Create Plan
+                        </Button>
+                        <Button 
+                            variant="contained"
+                            className='editForm-cta-button'
+                            color="secondary"
+                            onClick={this.handleCancel}>
+                                Cancel
+                        </Button>
+                    </div>
                 </form>
             </Container>
         )

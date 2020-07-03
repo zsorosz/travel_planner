@@ -9,16 +9,33 @@
     margin-top: 2rem;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 .editForm-cta-button {
-    width: 50%;
+    width: 49%;
 }
 
 .editForm-dates {
     display: flex;
     justify-content: space-evenly;
-    margin: .5rem 0;
+    margin: 2rem 0;
+}
+
+legend {
+    margin: 1rem 0;
+}
+.MuiFormGroup-root.radiogroup {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 1rem 0;
+}
+
+.MuiFormControlLabel-root.radiolabel {
+    width: 25%;
+    margin-left: 0;
 }
 
 .error-message {

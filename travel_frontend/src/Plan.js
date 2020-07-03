@@ -164,7 +164,7 @@ class Plan extends Component{
                             <Button 
                                 size="small"
                                 color='primary'>
-                                    Edit Activities
+                                    Add Activities
                             </Button>
                         </Link>
                     </CardActions>
