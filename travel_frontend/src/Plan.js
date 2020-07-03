@@ -52,7 +52,8 @@ class Plan extends Component{
                         (d.getMonth()+1),
                         d.getFullYear()].join('/');
         return dformat;
-    }
+    };
+    
     render(){
         if(this.state.loading){
             return (<h3>Loading...</h3>)
@@ -151,10 +152,11 @@ class Plan extends Component{
                         <Typography variant="h5" component="h2" gutterBottom>
                             Activities in {arrivalCity}
                         </Typography>
-                        {activities &&
-                        <Typography color="textSecondary" gutterBottom>
-                            {activities}
-                        </Typography>}
+                        {activities.map(el => (
+                            <li>
+                                {el}
+                            </li>
+                        ))}
                     </CardContent>
                     <CardActions>     
                         <Link to={{ pathname: `/${this.state.userId}/plans/${this.state.planId}/editActivities`, plan: this.state.plan }} onClick={e => e.stopPropagation()} className='link'>

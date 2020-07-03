@@ -13,6 +13,7 @@ class EditActivities extends Component {
         this.state = {
             loading : true,
             activities: [],
+            prevActivities: [],
             userId: this.props.match.params.userId,
             planId: this.props.match.params.planId,
             errors: {}
@@ -31,7 +32,7 @@ class EditActivities extends Component {
         showPlan(userId, planId).then(plan => {
             this.setState({
                 plan: plan,
-                activities: plan.route.activities,
+                prevActivities: plan.route.activities,
                 loading: false});
         })
         .catch(err => {
@@ -47,7 +48,7 @@ class EditActivities extends Component {
         e.preventDefault();
     
         const updatedPlan = {
-            activities: this.state.activities
+            activities: [...this.state.prevActivities, this.state.activities]
         }
 
         updateActivities(this.state.userId, this.state.planId, updatedPlan).then(res => {
