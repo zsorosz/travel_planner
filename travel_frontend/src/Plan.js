@@ -49,9 +49,9 @@ class Plan extends Component{
     }
     formatDate(date){
         const d = new Date(date);
-        const dformat = [(d.getMonth()+1),
-                   d.getDate(),
-                   d.getFullYear()].join('/');
+        const dformat = [d.getDate(),
+                        (d.getMonth()+1),
+                        d.getFullYear()].join('/');
         return dformat;
     }
     render(){

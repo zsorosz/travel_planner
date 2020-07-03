@@ -64,6 +64,11 @@ class EditPlan extends Component {
     };
     handleCancel(){
         history.push(`/${this.state.userId}/plans/${this.state.planId}`);
+    };
+    formatDate(date){
+        const d = new Date(date);
+        const dformat = [d.getFullYear(), ("0" + (d.getMonth() + 1)).slice(-2), ("0" + d.getDate()).slice(-2)].join('-');
+        return dformat;
     }
     render() {
         if(this.state.loading){
@@ -123,9 +128,9 @@ class EditPlan extends Component {
                     <TextField
                         id="departureDate"
                         label="From (date)"
-                        type="datetime-local"
+                        type="date"
                         name="departureDate"
-                        defaultValue="2020-07-02"
+                        defaultValue={this.formatDate(this.state.departureDate)}
                         onChange={this.onChange}
                         InputLabelProps={{
                             shrink: true,
@@ -134,9 +139,9 @@ class EditPlan extends Component {
                     <TextField
                         id="arrivalDate"
                         label="To (date)"
-                        type="datetime-local"
+                        type="date"
                         name="arrivalDate"
-                        defaultValue="2020-07-02"
+                        defaultValue={this.formatDate(this.state.arrivalDate)}
                         onChange={this.onChange}
                         InputLabelProps={{
                             shrink: true,
