@@ -23,6 +23,11 @@
     font-size: .7rem;
 }
 
+hr.divider {
+    width: 80%;
+    margin: 1rem 0;
+}
+
 @media only screen and (min-width: 481px) {
     .link-button .MuiButton-label {
         font-size: .9rem;
