@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import { updatePlan } from './PlanFunctions';
+import { updatePlan, showPlan } from './PlanFunctions';
 import './styles/FormStyles.css';
 
 class EditPlan extends Component {
@@ -12,6 +12,7 @@ class EditPlan extends Component {
         super(props)
         this.state = {
             loading : true,
+            plan: '',
             title: '',
             departureCity: '',
             arrivalCity: '',
@@ -28,16 +29,26 @@ class EditPlan extends Component {
         this.handleCancel = this.handleCancel.bind(this);
     };
     componentDidMount () {
-        this.setState({
-            title: this.props.location.plan.title,
-            departureCity: this.props.location.plan.route.departureCity,
-            arrivalCity: this.props.location.plan.route.arrivalCity,
-            travelMethod: this.props.location.plan.route.travelMethod,
-            travelCosts: this.props.location.plan.route.travelCosts,
-            departureDate: this.props.location.plan.route.departureDate,
-            arrivalDate: this.props.location.plan.route.arrivalDate,
-            loading: false
-          });     
+        this.showPlanDetails(this.state.userId, this.state.planId);
+    }
+
+    // //TODO: 
+    showPlanDetails(userId, planId){
+        showPlan(userId, planId).then(plan => {
+            this.setState({
+                plan: plan, 
+                title: plan.title,
+                departureCity: plan.route.departureCity,
+                arrivalCity: plan.route.arrivalCity,
+                travelMethod: plan.route.travelMethod,
+                travelCosts: plan.route.travelCosts,
+                departureDate: plan.route.departureDate,
+                arrivalDate: plan.route.arrivalDate,
+                loading: false});
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
     
     onChange(e) {

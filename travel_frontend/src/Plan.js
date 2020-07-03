@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-import Divider from '@material-ui/core/Divider';
 import { showPlan, deletePlan } from './PlanFunctions';
 import './styles/Plan.css';
 
