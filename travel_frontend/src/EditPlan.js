@@ -21,7 +21,6 @@ class EditPlan extends Component {
             departureCity: '',
             arrivalCity: '',
             travelMethod: '',
-            travelCosts: 0,
             departureDate: '',
             arrivalDate: '',
             userId: this.props.match.params.userId,
@@ -130,7 +129,7 @@ class EditPlan extends Component {
                         onChange={this.onChange}
                     />
                     <FormLabel className='form-label' component="legend">Travel Method</FormLabel>
-                    <RadioGroup defaultValue={this.state.travelMethod} id="travelMethod" name="travelMethod" aria-label="travelMethod" onChange={this.onChange} className='radiogroup'>
+                    <RadioGroup value={this.state.travelMethod} id="travelMethod" name="travelMethod" aria-label="travelMethod" onChange={this.onChange} className='radiogroup'>
                         <FormControlLabel className='radiolabel' value="Car" control={<Radio />} label="Car" />
                         <FormControlLabel className='radiolabel' value="Airplane" control={<Radio />} label="Airplane" />
                         <FormControlLabel className='radiolabel' value="Train" control={<Radio />} label="Train" />

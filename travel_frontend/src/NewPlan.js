@@ -43,7 +43,8 @@ class NewPlan extends Component {
             departureCity: this.state.departureCity,
             arrivalCity: this.state.arrivalCity,
             departureDate: this.state.departureDate,
-            arrivalDate: this.state.arrivalDate
+            arrivalDate: this.state.arrivalDate,
+            travelMethod: this.state.travelMethod
         }
 
         createNewPlan(newPlan, this.props.match.params.userId).then(res => {
@@ -96,7 +97,7 @@ class NewPlan extends Component {
                         onChange={this.onChange}
                     />
                     <FormLabel className='form-label' component="legend">Travel Method</FormLabel>
-                    <RadioGroup id="travelMethod" name="travelMethod" aria-label="travelMethod" onChange={this.onChange} className='radiogroup'>
+                    <RadioGroup value={this.state.travelMethod} id="travelMethod" name="travelMethod" aria-label="travelMethod" onChange={this.onChange} className='radiogroup'>
                         <FormControlLabel className='radiolabel' value="Car" control={<Radio />} label="Car" />
                         <FormControlLabel className='radiolabel' value="Airplane" control={<Radio />} label="Airplane" />
                         <FormControlLabel className='radiolabel' value="Train" control={<Radio />} label="Train" />
