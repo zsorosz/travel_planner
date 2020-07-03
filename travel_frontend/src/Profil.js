@@ -91,7 +91,7 @@ render() {
                         <CardMedia
                             component="img"
                             height="140"
-                            image={`https://source.unsplash.com/1600x900/?${plan.route.arrivalCity}`}
+                            image={`https://source.unsplash.com/300x150/?${plan.route.arrivalCity}`}
                             title={plan.title}
                         />
                         <CardContent>

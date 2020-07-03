@@ -80,3 +80,12 @@ export const updateCosts = (userId, planId, updatedPlan) => {
       // console.log('Plan Updated')
     })
 }
+export const updateActivities = (userId, planId, updatedPlan) => {
+  return axios
+    .put(`/api/users/${userId}/plans/${planId}/activities`, {
+      activities: updatedPlan.activities
+    })
+    .then(response => {
+      // console.log('Plan Updated')
+    })
+}

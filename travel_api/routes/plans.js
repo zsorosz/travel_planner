@@ -105,12 +105,18 @@ router.delete("/:planId", (req, res) => {
 // Update costs
 
 router.put("/:planId/costs", (req, res) => {
-    // const updatedPlan = {
-    //     route: {
-    //         travelCosts: req.body.travelCosts
-    //     }
-    // }
     Plans.findByIdAndUpdate(req.params.planId, {$set: {'route.travelCosts': req.body.travelCosts, 'route.accomodationCosts': req.body.accomodationCosts, 'route.otherCosts': req.body.otherCosts}}, {new: true})
+    .then((plan) => {
+        res.json(plan)
+    }).catch((err) => {
+        res.send(err)
+    })
+  });
+
+// Update activities
+
+router.put("/:planId/activities", (req, res) => {
+    Plans.findByIdAndUpdate(req.params.planId, {$set: {'route.activities': req.body.activities}}, {new: true})
     .then((plan) => {
         res.json(plan)
     }).catch((err) => {

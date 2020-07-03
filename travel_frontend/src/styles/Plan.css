@@ -13,9 +13,21 @@
     padding: .2rem;
 }
 
+.main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 .plan-card {
     width: 100%;
-    margin-bottom: .5rem;
+    margin: .25rem;
+}
+
+.cost-card {
+    width: 100%;
+    margin: .25rem;
 }
 
 .link-button .MuiButton-label {
@@ -34,5 +46,9 @@ hr.divider {
     }
     .plan-cta {
         justify-content: space-around;
+    }
+    .cost-card {
+        margin: .25rem;
+        width: calc(50% - .5rem);
     }
   }
