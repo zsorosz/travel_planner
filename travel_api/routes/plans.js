@@ -71,19 +71,7 @@ router.get('/:planId', (req, res) => {
 // Update plan
 
 router.put("/:planId", (req, res) => {
-    const updatedPlan = {
-        title: req.body.title,
-        startDate: req.body.startDate,
-        endDate: req.body.endDate,
-        route: {
-            departureCity: req.body.departureCity,
-            arrivalCity: req.body.arrivalCity,
-            departureDate: req.body.departureDate,
-            arrivalDate: req.body.arrivalDate,
-            travelMethod: req.body.travelMethod
-        }
-    }
-    Plans.findByIdAndUpdate(req.params.planId, { $set: { 'title': req.body.title, 'route.departureCity': req.body.departureCity, 'route.arrivalCity': req.body.arrivalCity, 'route.arrivalDate': req.body.arrivalDate, 'route.travelMethod': req.body.travelMethod } }, {new: true})
+    Plans.findByIdAndUpdate(req.params.planId, { $set: { 'title': req.body.title, 'route.departureCity': req.body.departureCity, 'route.arrivalCity': req.body.arrivalCity, 'route.departureDate': req.body.departureDate, 'route.arrivalDate': req.body.arrivalDate, 'route.travelMethod': req.body.travelMethod } }, {new: true})
     .then((plan) => {
         res.json(plan)
     }).catch((err) => {

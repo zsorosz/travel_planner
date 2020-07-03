@@ -6,7 +6,9 @@ export const createNewPlan = (newPlan, id) => {
         title: newPlan.title,
         departureCity: newPlan.departureCity,
         arrivalCity: newPlan.arrivalCity,
-        travelMethod: newPlan.travelMethod
+        travelMethod: newPlan.travelMethod,
+        departureDate: newPlan.departureDate,
+        arrivalDate: newPlan.arrivalDate
       })
       .then(response => {
         // console.log('New Plan Created')

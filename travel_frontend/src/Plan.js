@@ -39,7 +39,7 @@ class Plan extends Component{
     }
 
     handleDelete(){
-        deletePlan(this.props.match.params.userId, this.props.match.params.planId).then(() => {
+        deletePlan(this.state.userId, this.state.planId).then(() => {
             history.push('/')
         })
         .catch(err => {
@@ -58,6 +58,7 @@ class Plan extends Component{
         if(this.state.loading){
             return (<h3>Loading...</h3>)
         }
+        const { userId, planId, plan } = this.state;
         const { title } = this.state.plan;
         const { departureCity, arrivalCity, departureDate, arrivalDate, travelMethod, travelCosts, accomodationCosts, otherCosts, activities } = this.state.plan.route;
         return(
@@ -74,7 +75,7 @@ class Plan extends Component{
                                 Back
                         </Button>
                     </Link>
-                    <Link to={{ pathname: `/${this.state.userId}/plans/${this.state.planId}/edit`, plan: this.state.plan }} onClick={e => e.stopPropagation()} className='link'>
+                    <Link to={{ pathname: `/${userId}/plans/${planId}/edit`, plan: plan }} onClick={e => e.stopPropagation()} className='link'>
                         <Button 
                             className='link-button link-button-edit'
                             size="small"
@@ -105,7 +106,7 @@ class Plan extends Component{
                         </Typography>
                     </CardContent>
                     <CardActions>     
-                        <Link to={{ pathname: `/${this.state.userId}/plans/${this.state.planId}/edit`, plan: this.state.plan }} onClick={e => e.stopPropagation()} className='link'>
+                        <Link to={{ pathname: `/${userId}/plans/${planId}/edit`, plan: plan }} onClick={e => e.stopPropagation()} className='link'>
                             <Button 
                                 size="small"
                                 color='primary'>
@@ -138,7 +139,7 @@ class Plan extends Component{
                         </Typography>}
                     </CardContent>
                     <CardActions>     
-                        <Link to={{ pathname: `/${this.state.userId}/plans/${this.state.planId}/editCosts`, plan: this.state.plan }} onClick={e => e.stopPropagation()} className='link'>
+                        <Link to={{ pathname: `/${userId}/plans/${planId}/editCosts`, plan: plan }} onClick={e => e.stopPropagation()} className='link'>
                             <Button 
                                 size="small"
                                 color='primary'>
@@ -159,7 +160,7 @@ class Plan extends Component{
                         ))}
                     </CardContent>
                     <CardActions>     
-                        <Link to={{ pathname: `/${this.state.userId}/plans/${this.state.planId}/editActivities`, plan: this.state.plan }} onClick={e => e.stopPropagation()} className='link'>
+                        <Link to={{ pathname: `/${userId}/plans/${planId}/editActivities`, plan: plan }} onClick={e => e.stopPropagation()} className='link'>
                             <Button 
                                 size="small"
                                 color='primary'>

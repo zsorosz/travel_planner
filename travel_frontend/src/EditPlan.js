@@ -136,28 +136,30 @@ class EditPlan extends Component {
                         value={this.state.travelMethod}
                         onChange={this.onChange}
                     />
-                    <TextField
-                        id="departureDate"
-                        label="From (date)"
-                        type="date"
-                        name="departureDate"
-                        defaultValue={this.formatDate(this.state.departureDate)}
-                        onChange={this.onChange}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
-                    <TextField
-                        id="arrivalDate"
-                        label="To (date)"
-                        type="date"
-                        name="arrivalDate"
-                        defaultValue={this.formatDate(this.state.arrivalDate)}
-                        onChange={this.onChange}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
+                    <div className='editForm-dates'>
+                        <TextField
+                            id="departureDate"
+                            label="From (date)"
+                            type="date"
+                            name="departureDate"
+                            defaultValue={this.formatDate(this.state.departureDate)}
+                            onChange={this.onChange}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                        <TextField
+                            id="arrivalDate"
+                            label="To (date)"
+                            type="date"
+                            name="arrivalDate"
+                            defaultValue={this.formatDate(this.state.arrivalDate)}
+                            onChange={this.onChange}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                    </div>
                     <div className='editForm-cta'>
                         <Button
                             type="submit"

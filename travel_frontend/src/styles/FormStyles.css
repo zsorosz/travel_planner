@@ -1,5 +1,5 @@
 .form-container {
-    margin-top: 5rem;
+    margin-top: 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,6 +13,12 @@
 
 .editForm-cta-button {
     width: 50%;
+}
+
+.editForm-dates {
+    display: flex;
+    justify-content: space-evenly;
+    margin: .5rem 0;
 }
 
 .error-message {

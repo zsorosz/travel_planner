@@ -14,11 +14,14 @@ class NewPlan extends Component {
             title: '',
             departureCity: '',
             arrivalCity: '',
+            departureDate: '',
+            arrivalDate: '',
             travelMethod: '',
             errors: {}
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
     };
     componentDidMount () {
         const id = this.props.location.userId;   
@@ -35,13 +38,17 @@ class NewPlan extends Component {
             title: this.state.title,
             departureCity: this.state.departureCity,
             arrivalCity: this.state.arrivalCity,
-            travelMethod: this.state.travelMethod
+            departureDate: this.state.departureDate,
+            arrivalDate: this.state.arrivalDate
         }
 
         createNewPlan(newPlan, this.props.match.params.userId).then(res => {
             // console.log('Success', res);
             history.push(`/${this.props.match.params.userId}/plans/${res._id}`)
         });
+    };
+    handleCancel(){
+        history.push('/');
     };
     render() {
         return (
@@ -95,13 +102,42 @@ class NewPlan extends Component {
                         value={this.state.travelMethod}
                         onChange={this.onChange}
                     />
+                    <div className='editForm-dates'>
+                        <TextField
+                            id="departureDate"
+                            label="From (date)"
+                            type="date"
+                            name="departureDate"
+                            onChange={this.onChange}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                        <TextField
+                            id="arrivalDate"
+                            label="To (date)"
+                            type="date"
+                            name="arrivalDate"
+                            onChange={this.onChange}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                    </div>
                     <Button
                         type="submit"
-                        fullWidth
                         variant="contained"
+                        className='editForm-cta-button'
                         color="primary"
                     >
                         Create Plan
+                    </Button>
+                    <Button 
+                        variant="contained"
+                        className='editForm-cta-button'
+                        color="secondary"
+                        onClick={this.handleCancel}>
+                            Cancel
                     </Button>
                 </form>
             </Container>
