@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import { updateCosts } from './PlanFunctions';
+import { updateCosts, showPlan } from './PlanFunctions';
 import './styles/FormStyles.css';
 
 class EditCosts extends Component {
@@ -23,13 +23,24 @@ class EditCosts extends Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
     };
+
     componentDidMount () {
-        this.setState({
-            travelCosts: this.props.location.plan.route.travelCosts,
-            accomodationCosts: this.props.location.plan.route.accomodationCosts,
-            otherCosts: this.props.location.plan.route.otherCosts,
-            loading: false
-          });     
+        this.showPlanDetails(this.state.userId, this.state.planId);
+    }
+
+    // //TODO: 
+    showPlanDetails(userId, planId){
+        showPlan(userId, planId).then(plan => {
+            this.setState({
+                plan: plan,
+                travelCosts: plan.route.travelCosts,
+                accomodationCosts: plan.route.accomodationCosts,
+                otherCosts: plan.route.otherCosts,
+                loading: false});
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
     
     onChange(e) {
