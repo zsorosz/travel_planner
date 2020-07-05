@@ -63,7 +63,7 @@ render() {
     return (
         <Container component="main" maxWidth="xl" className='profil-container'>
             <div className='profil-header'>
-                <Typography component="h6" variant="h6" className='profil-headline'>Hi, {this.state.username}!
+                <Typography component="h5" variant="h5" className='profil-headline'>Hi, {this.state.username}!
                 </Typography>
                 <Button 
                     className='profil-button profil-logout'
